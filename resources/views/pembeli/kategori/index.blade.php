@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <div class="">
+        <div class="content-detached ">
             <div class="content-body">
                 <!-- E-commerce Content Section Starts -->
                 <section id="ecommerce-header">
@@ -94,11 +94,12 @@
                 <!-- E-commerce Products Starts -->
                 <section id="ecommerce-products" class="grid-view">
 
-                    @foreach ($kategori as $item)
+                    @foreach ($produk as $item)
+                        
                     <div class="card ecommerce-card">
                         <div class="item-img text-center">
-                            <a href={{route('halaman-kategori',$item->id)}}>
-                                <img class="img-fluid card-img-top" src="{{asset('gambar-kategori/'. $item->gambar )}}" alt="img-placeholder" /></a>
+                            <a href="app-ecommerce-details.html">
+                                <img class="img-fluid card-img-top" src="{{asset('gambar-produk/'. $item->gambar )}}" alt="img-placeholder" /></a>
                         </div>
                         <div class="card-body">
                             <div class="item-wrapper">
@@ -111,25 +112,25 @@
                                         <li class="ratings-list-item"><i data-feather="star" class="unfilled-star"></i></li>
                                     </ul>
                                 </div>
+                                <div>
+                                    <h6 class="item-price">Rp.{{$item->harga_jual}}</h6>
+                                </div>
                             </div>
                             <h6 class="item-name">
-                                <a class="text-body" href={{route('halaman-kategori',$item->id)}}>{{$item->jenis_kategori}}</a>
+                                <a class="text-body" href="app-ecommerce-details.html">{{$item->nama_produk}}</a>
+                                <span class="card-text item-company">By <a href="{{route('pesan',$item->id)}}" class="company-name">Apple</a></span>
                             </h6>
+                            <p class="card-text item-description">
+                              {{$item->deskripsi}}
+                            </p>
                         </div>
                         <div class="item-options text-center">
-                            <div class="item-wrapper">
-                            </div>
-                            {{-- <a href="javascript:void(0)" class="btn btn-light btn-wishlist">
-                                <i data-feather="heart"></i>
-                                <span>Wishlist</span>
-                            </a>
-                            <a href="javascript:void(0)" class="btn btn-primary btn-cart">
+                            <a href="{{route('pesan',$item->id)}}" class="btn btn-primary btn-block">
                                 <i data-feather="shopping-cart"></i>
-                                <span class="add-to-cart">Add to cart</span>
-                            </a> --}}
+                                Pesan Sekarang
+                            </a>
                         </div>
                     </div>
-                        
                     @endforeach
 
 
@@ -550,6 +551,7 @@
 
             </div>
         </div>
+
         {{-- <div class="sidebar-detached sidebar-left">
             <div class="sidebar">
                 <!-- Ecommerce Sidebar Starts -->
@@ -824,6 +826,7 @@
 
             </div>
         </div> --}}
+
     </div>
 </div>
 <!-- END: Content-->

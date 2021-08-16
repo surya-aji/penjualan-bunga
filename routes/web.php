@@ -32,13 +32,13 @@ Route::middleware(['auth'])->group(function () {
     
     // ====================Buyer
     Route::group(['prefix' => 'buyer','middleware' => 'buyer'],function(){
-        Route::get('/dashboard', function () {
-            return view('pembeli.layout.dashboard');
-        });
+        Route::get('/dashboard','DashboardController@index');
+        Route::get('/kategori/{id}','Buyer\Index\IndexController@index')->name('halaman-kategori');
+        Route::get('/pesan/{id}','Buyer\pembelian\PesanController@index')->name('pesan');
+        Route::post('/ambil-pesan/{id}','Buyer\pembelian\PesanController@pesan')->name('masukan-keranjang');
 
-        Route::get('/keranjang', function () {
-            return view('pembeli.keranjang.index');
-        });
+        Route::get('/keranjang', 'Buyer\pembelian\PesanController@keranjang');
+        Route::delete('/hapus-keranjang/{id}', 'Buyer\pembelian\PesanController@hapusKeranjang')->name('hapus-keranjang');
     });
 
 
@@ -50,16 +50,13 @@ Route::middleware(['auth'])->group(function () {
             return view('penjual.layout.dashboard');
         });
         
-        Route::get('/stok', function () {
+        Route::get('/penjualan', function () {
             return view('penjual.stok.index');
         });
 
-        Route::get('/pembelian-produk', function () {
-            return view('penjual.produk.index');
-        });
-        Route::get('/data-supplier', function () {
-            return view('penjual.supplier.index');
-        });
+       Route::resource('/produk', 'Seller\Produk\DataProdukController');
+       Route::resource('/kategori', 'Seller\Produk\DataKategoriController');
+        Route::resource('/data-supplier', 'Seller\Supplier\SupplierController');
 
         Route::get('/laporan', function () {
             return view('penjual.laporan.index');

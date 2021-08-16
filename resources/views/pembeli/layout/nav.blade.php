@@ -34,176 +34,29 @@
         <div class="shadow-bottom"></div>
         <!-- Horizontal menu content-->
         <div class="navbar-container main-menu-content" data-menu="menu-container">
+
+            <?php 
+                $pesanan_utama = \App\Pesanan::where('user_id',Auth::user()->id)->where('status',0)->first();
+                if (!empty($pesanan_utama)) {
+                    $notif_keranjang =  \App\PesananDetail::where('pesanan_id',$pesanan_utama->id)->count();
+                }
+               
+                
+                
+            ?>
             <!-- include ../../../includes/mixins-->
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="nav-item {{ Request::segment(2) === 'dashboard' ? 'active' : null }}"><a class="nav-link d-flex align-items-center" href="<?=url('buyer/dashboard')?>"><i data-feather="home"></i><span data-i18n="Dashboards">Dashboards</span></a>
                 </li>
-                <li class="nav-item {{ Request::segment(2) === 'keranjang' ? 'active' : null }}"><a class="nav-link d-flex align-items-center" href="<?=url('buyer/keranjang')?>" ><i data-feather="package"></i><span data-i18n="Apps">Keranjang</span></a>
+                <li class="nav-item {{ Request::segment(2) === 'keranjang' ? 'active' : null }}"><a class="nav-link d-flex align-items-center" href="<?=url('buyer/keranjang')?>" ><i data-feather="package"></i><span data-i18n="Apps">Keranjang</span><span class="badge badge-light-warning badge-pill ml-auto mr-1">
+                    @if (!empty($notif_keranjang))
+                    
+                      {{$notif_keranjang}}
+                  @endif
+            </span></a>
                 </li>
                 <li class="nav-item {{ Request::segment(2) === 'admin-dashboard' ? 'active' : null }}"><a class="nav-link d-flex align-items-center" href="#" ><i data-feather="package"></i><span data-i18n="Apps">Pembelian</span></a>
                 </li>
-                {{-- <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-toggle="dropdown"><i data-feather="edit"></i><span data-i18n="Forms &amp; Tables">Forms &amp; Tables</span></a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item d-flex align-items-center dropdown-toggle" href="#" data-toggle="dropdown" data-i18n="Form Elements"><i data-feather="copy"></i><span data-i18n="Form Elements">Form Elements</span></a>
-                            <ul class="dropdown-menu">
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="form-input.html" data-toggle="dropdown" data-i18n="Input"><i data-feather="circle"></i><span data-i18n="Input">Input</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="form-input-groups.html" data-toggle="dropdown" data-i18n="Input Groups"><i data-feather="circle"></i><span data-i18n="Input Groups">Input Groups</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="form-input-mask.html" data-toggle="dropdown" data-i18n="Input Mask"><i data-feather="circle"></i><span data-i18n="Input Mask">Input Mask</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="form-textarea.html" data-toggle="dropdown" data-i18n="Textarea"><i data-feather="circle"></i><span data-i18n="Textarea">Textarea</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="form-checkbox.html" data-toggle="dropdown" data-i18n="Checkbox"><i data-feather="circle"></i><span data-i18n="Checkbox">Checkbox</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="form-radio.html" data-toggle="dropdown" data-i18n="Radio"><i data-feather="circle"></i><span data-i18n="Radio">Radio</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="form-switch.html" data-toggle="dropdown" data-i18n="Switch"><i data-feather="circle"></i><span data-i18n="Switch">Switch</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="form-select.html" data-toggle="dropdown" data-i18n="Select"><i data-feather="circle"></i><span data-i18n="Select">Select</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="form-number-input.html" data-toggle="dropdown" data-i18n="Number Input"><i data-feather="circle"></i><span data-i18n="Number Input">Number Input</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="form-file-uploader.html" data-toggle="dropdown" data-i18n="File Uploader"><i data-feather="circle"></i><span data-i18n="File Uploader">File Uploader</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="form-quill-editor.html" data-toggle="dropdown" data-i18n="Quill Editor"><i data-feather="circle"></i><span data-i18n="Quill Editor">Quill Editor</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="form-date-time-picker.html" data-toggle="dropdown" data-i18n="Date &amp; Time Picker"><i data-feather="circle"></i><span data-i18n="Date &amp; Time Picker">Date &amp; Time Picker</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="form-layout.html" data-toggle="dropdown" data-i18n="Form Layout"><i data-feather="box"></i><span data-i18n="Form Layout">Form Layout</span></a>
-                        </li>
-                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="form-wizard.html" data-toggle="dropdown" data-i18n="Form Wizard"><i data-feather="package"></i><span data-i18n="Form Wizard">Form Wizard</span></a>
-                        </li>
-                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="form-validation.html" data-toggle="dropdown" data-i18n="Form Validation"><i data-feather="check-circle"></i><span data-i18n="Form Validation">Form Validation</span></a>
-                        </li>
-                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="form-repeater.html" data-toggle="dropdown" data-i18n="Form Repeater"><i data-feather="rotate-cw"></i><span data-i18n="Form Repeater">Form Repeater</span></a>
-                        </li>
-                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="table-bootstrap.html" data-toggle="dropdown" data-i18n="Table"><i data-feather="server"></i><span data-i18n="Table">Table</span></a>
-                        </li>
-                        <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item d-flex align-items-center dropdown-toggle" href="#" data-toggle="dropdown" data-i18n="Datatable"><i data-feather="grid"></i><span data-i18n="Datatable">Datatable</span></a>
-                            <ul class="dropdown-menu">
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="table-datatable-basic.html" data-toggle="dropdown" data-i18n="Basic"><i data-feather="circle"></i><span data-i18n="Basic">Basic</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="table-datatable-advanced.html" data-toggle="dropdown" data-i18n="Advanced"><i data-feather="circle"></i><span data-i18n="Advanced">Advanced</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="table-ag-grid.html" data-toggle="dropdown" data-i18n="agGrid Table"><i data-feather="grid"></i><span data-i18n="agGrid Table">agGrid Table</span></a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-toggle="dropdown"><i data-feather="file-text"></i><span data-i18n="Pages">Pages</span></a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item d-flex align-items-center dropdown-toggle" href="#" data-toggle="dropdown" data-i18n="Authentication"><i data-feather="unlock"></i><span data-i18n="Authentication">Authentication</span></a>
-                            <ul class="dropdown-menu">
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-auth-login-v1.html" data-toggle="dropdown" data-i18n="LoginV1" target="_blank"><i data-feather="circle"></i><span data-i18n="LoginV1">Login v1</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-auth-login-v2.html" data-toggle="dropdown" data-i18n="LoginV2" target="_blank"><i data-feather="circle"></i><span data-i18n="LoginV2">Login v2</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-auth-register-v1.html" data-toggle="dropdown" data-i18n="RegisterV1" target="_blank"><i data-feather="circle"></i><span data-i18n="RegisterV1">Register v1</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-auth-register-v2.html" data-toggle="dropdown" data-i18n="RegisterV2" target="_blank"><i data-feather="circle"></i><span data-i18n="RegisterV2">Register v2</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-auth-forgot-password-v1.html" data-toggle="dropdown" data-i18n="ForgotPasswordV1" target="_blank"><i data-feather="circle"></i><span data-i18n="ForgotPasswordV1">Forgot Password v1</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-auth-forgot-password-v2.html" data-toggle="dropdown" data-i18n="ForgotPasswordV2" target="_blank"><i data-feather="circle"></i><span data-i18n="ForgotPasswordV2">Forgot Password v2</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-auth-reset-password-v1.html" data-toggle="dropdown" data-i18n="ResetPasswordV1" target="_blank"><i data-feather="circle"></i><span data-i18n="ResetPasswordV1">Reset Password v1</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-auth-reset-password-v2.html" data-toggle="dropdown" data-i18n="ResetPasswordV2" target="_blank"><i data-feather="circle"></i><span data-i18n="ResetPasswordV2">Reset Password v2</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-account-settings.html" data-toggle="dropdown" data-i18n="Account Settings"><i data-feather="settings"></i><span data-i18n="Account Settings">Account Settings</span></a>
-                        </li>
-                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-profile.html" data-toggle="dropdown" data-i18n="Profile"><i data-feather="user"></i><span data-i18n="Profile">Profile</span></a>
-                        </li>
-                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-faq.html" data-toggle="dropdown" data-i18n="FAQ"><i data-feather="help-circle"></i><span data-i18n="FAQ">FAQ</span></a>
-                        </li>
-                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-knowledge-base.html" data-toggle="dropdown" data-i18n="Knowledge Base"><i data-feather="info"></i><span data-i18n="Knowledge Base">Knowledge Base</span></a>
-                        </li>
-                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-pricing.html" data-toggle="dropdown" data-i18n="Pricing"><i data-feather="dollar-sign"></i><span data-i18n="Pricing">Pricing</span></a>
-                        </li>
-                        <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item d-flex align-items-center dropdown-toggle" href="#" data-toggle="dropdown" data-i18n="Blog"><i data-feather="clipboard"></i><span data-i18n="Blog">Blog</span></a>
-                            <ul class="dropdown-menu">
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-blog-list.html" data-toggle="dropdown" data-i18n="List"><i data-feather="circle"></i><span data-i18n="List">List</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-blog-detail.html" data-toggle="dropdown" data-i18n="Detail"><i data-feather="circle"></i><span data-i18n="Detail">Detail</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-blog-edit.html" data-toggle="dropdown" data-i18n="Edit"><i data-feather="circle"></i><span data-i18n="Edit">Edit</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item d-flex align-items-center dropdown-toggle" href="#" data-toggle="dropdown" data-i18n="Mail Template"><i data-feather="mail"></i><span data-i18n="Mail Template">Mail Template</span></a>
-                            <ul class="dropdown-menu">
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="https://pixinvent.com/demo/vuexy-mail-template/mail-welcome.html" data-toggle="dropdown" data-i18n="Welcome" target="_blank"><i data-feather="circle"></i><span data-i18n="Welcome">Welcome</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="https://pixinvent.com/demo/vuexy-mail-template/mail-reset-password.html" data-toggle="dropdown" data-i18n="Reset Password" target="_blank"><i data-feather="circle"></i><span data-i18n="Reset Password">Reset Password</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="https://pixinvent.com/demo/vuexy-mail-template/mail-verify-email.html" data-toggle="dropdown" data-i18n="Verify Email" target="_blank"><i data-feather="circle"></i><span data-i18n="Verify Email">Verify Email</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="https://pixinvent.com/demo/vuexy-mail-template/mail-deactivate-account.html" data-toggle="dropdown" data-i18n="Deactivate Account" target="_blank"><i data-feather="circle"></i><span data-i18n="Deactivate Account">Deactivate Account</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="https://pixinvent.com/demo/vuexy-mail-template/mail-invoice.html" data-toggle="dropdown" data-i18n="Invoice" target="_blank"><i data-feather="circle"></i><span data-i18n="Invoice">Invoice</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="https://pixinvent.com/demo/vuexy-mail-template/mail-promotional.html" data-toggle="dropdown" data-i18n="Promotional" target="_blank"><i data-feather="circle"></i><span data-i18n="Promotional">Promotional</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item d-flex align-items-center dropdown-toggle" href="#" data-toggle="dropdown" data-i18n="Miscellaneous"><i data-feather="file"></i><span data-i18n="Miscellaneous">Miscellaneous</span></a>
-                            <ul class="dropdown-menu">
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-misc-coming-soon.html" data-toggle="dropdown" data-i18n="Coming Soon" target="_blank"><i data-feather="circle"></i><span data-i18n="Coming Soon">Coming Soon</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-misc-not-authorized.html" data-toggle="dropdown" data-i18n="Not Authorized" target="_blank"><i data-feather="circle"></i><span data-i18n="Not Authorized">Not Authorized</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-misc-under-maintenance.html" data-toggle="dropdown" data-i18n="Maintenance" target="_blank"><i data-feather="circle"></i><span data-i18n="Maintenance">Maintenance</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="page-misc-error.html" data-toggle="dropdown" data-i18n="Error" target="_blank"><i data-feather="circle"></i><span data-i18n="Error">Error</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-toggle="dropdown"><i data-feather="bar-chart-2"></i><span data-i18n="Charts &amp; Maps">Charts &amp; Maps</span></a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item d-flex align-items-center dropdown-toggle" href="#" data-toggle="dropdown" data-i18n="Charts"><i data-feather="pie-chart"></i><span data-i18n="Charts">Charts</span></a>
-                            <ul class="dropdown-menu">
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="chart-apex.html" data-toggle="dropdown" data-i18n="Apex"><i data-feather="circle"></i><span data-i18n="Apex">Apex</span></a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="chart-chartjs.html" data-toggle="dropdown" data-i18n="Chartjs"><i data-feather="circle"></i><span data-i18n="Chartjs">Chartjs</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="maps-leaflet.html" data-toggle="dropdown" data-i18n="Leaflet Maps"><i data-feather="map"></i><span data-i18n="Leaflet Maps">Leaflet Maps</span></a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-toggle="dropdown"><i data-feather="box"></i><span data-i18n="Misc">Misc</span></a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item d-flex align-items-center dropdown-toggle" href="#" data-toggle="dropdown" data-i18n="Menu Levels"><i data-feather="menu"></i><span data-i18n="Menu Levels">Menu Levels</span></a>
-                            <ul class="dropdown-menu">
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="#" data-toggle="dropdown" data-i18n="Second Level"><i data-feather="circle"></i><span data-i18n="Second Level">Second Level 2.1</span></a>
-                                </li>
-                                <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item d-flex align-items-center dropdown-toggle" href="#" data-toggle="dropdown" data-i18n="Second Level"><i data-feather="circle"></i><span data-i18n="Second Level">Second Level 2.2</span></a>
-                                    <ul class="dropdown-menu">
-                                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="#" data-toggle="dropdown" data-i18n="Third Level"><i data-feather="circle"></i><span data-i18n="Third Level">Third Level 3.1</span></a>
-                                        </li>
-                                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="#" data-toggle="dropdown" data-i18n="Third Level"><i data-feather="circle"></i><span data-i18n="Third Level">Third Level 3.2</span></a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="disabled" data-menu=""><a class="dropdown-item d-flex align-items-center" href="" data-toggle="dropdown" data-i18n="Disabled Menu"><i data-feather="eye-off"></i><span data-i18n="Disabled Menu">Disabled Menu</span></a>
-                        </li>
-                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/documentation" data-toggle="dropdown" data-i18n="Documentation"><i data-feather="folder"></i><span data-i18n="Documentation">Documentation</span></a>
-                        </li>
-                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="https://pixinvent.ticksy.com/" data-toggle="dropdown" data-i18n="Raise Support"><i data-feather="life-buoy"></i><span data-i18n="Raise Support">Raise Support</span></a>
-                        </li>
-                    </ul>
-                </li> --}}
             </ul>
         </div>
     </div>

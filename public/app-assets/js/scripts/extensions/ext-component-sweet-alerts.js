@@ -26,6 +26,7 @@ $(function () {
   var shake = $('#shake-animation');
 
   var success = $('#type-success');
+  var keranjang = $('#keranjang');
   var error = $('#type-error');
   var warning = $('#type-warning');
   var info = $('#type-info');
@@ -273,8 +274,23 @@ $(function () {
   if (success.length) {
     success.on('click', function () {
       Swal.fire({
-        title: 'Good job!',
-        text: 'You clicked the button!',
+        title: 'Berhasil',
+        text: '-----',
+        icon: 'success',
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false
+      });
+    });
+  }
+
+  //keranjang
+  if (keranjang.length) {
+    keranjang.on('click', function () {
+      Swal.fire({
+        title: 'Berhasil',
+        text: 'Telah Memasukan Ke Keranjang',
         icon: 'success',
         customClass: {
           confirmButton: 'btn btn-primary'

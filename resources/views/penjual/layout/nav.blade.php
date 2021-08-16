@@ -45,9 +45,15 @@
             </li> --}}
             <li class=" nav-item {{ Request::segment(2) === 'dashboard' ? 'active' : null }}"><a class="d-flex align-items-center" href="<?=url('seller/dashboard')?>"><i data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Email">Dashboard</span></a>
             </li>
-            <li class=" nav-item {{ Request::segment(2) === 'stok' ? 'active' : null }}"><a class="d-flex align-items-center" href="<?=url('seller/stok')?>"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Stok</span></a>
+            <li class=" nav-item {{ Request::segment(2) === 'penjualan' ? 'active' : null }}"><a class="d-flex align-items-center" href="<?=url('seller/penjualan')?>"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Data Penjualan</span></a>
             </li>
-            <li class=" nav-item {{ Request::segment(2) === 'pembelian-produk' ? 'active' : null }}"><a class="d-flex align-items-center" href="<?=url('seller/pembelian-produk')?>"><i data-feather="check-square"></i><span class="menu-title text-truncate" data-i18n="Todo">Pembelian Produk</span></a>
+            <li class=" nav-item {{ Request::segment(2) === 'produk' ? 'active' : null }}"><a class="d-flex align-items-center" ><i data-feather="check-square"></i><span class="menu-title text-truncate" data-i18n="Todo">Produk</span></a>
+                    <ul class="menu-content">
+                        <li><a class="d-flex align-items-center " href="<?=url('seller/produk')?>"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Basic">Data Produk</span></a>
+                        </li>
+                        <li><a class="d-flex align-items-center" href="<?=url('seller/kategori')?>"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Advanced">Kategori</span></a>
+                        </li>
+                    </ul>
             </li>
             <li class=" nav-item {{ Request::segment(2) === 'data-supplier' ? 'active' : null }}"><a class="d-flex align-items-center" href="<?=url('seller/data-supplier')?>"><i data-feather="calendar"></i><span class="menu-title text-truncate" data-i18n="Calendar">Data Supplier</span></a>
             </li>
