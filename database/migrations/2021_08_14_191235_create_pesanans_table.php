@@ -18,7 +18,14 @@ class CreatePesanansTable extends Migration
             $table->integer('user_id');
             $table->date('tanggal');
             $table->string('status');
+            $table->integer('ongkos_kirim')->nullable();
+            $table->text('alamat_lengkap')->nullable();
+            $table->string('resi')->unique()->nullable();
             $table->integer('total_pembayaran');
+            $table->integer('barang_id')->nullable();
+            $table->string('kurir')->nullable();
+            $table->string('layanan')->nullable();
+            $table->string('status_pembayaran')->default(0);
             $table->timestamps();
         });
     }

@@ -5,12 +5,14 @@
 
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{asset('app-assets/vendors/js/ui/jquery.sticky.js')}}"></script>
+    <script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/forms/wizard/bs-stepper.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/forms/spinner/jquery.bootstrap-touchspin.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/extensions/swiper.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/extensions/wNumb.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/extensions/nouislider.min.js')}}"></script>
+    <script src="{{asset('app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/extensions/toastr.min.js')}}"></script>
     <!-- END: Page Vendor JS-->
 
@@ -27,5 +29,7 @@
     <script src="{{asset('app-assets/js/scripts/forms/form-number-input.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/extensions/ext-component-sweet-alerts.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
+    
+    <script src="{{asset('app-assets/js/scripts/forms/form-select2.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/extensions/polyfill.min.js')}}"></script>
     <!-- END: Page JS-->

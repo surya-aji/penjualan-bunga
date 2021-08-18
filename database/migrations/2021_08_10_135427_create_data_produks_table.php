@@ -20,6 +20,7 @@ class CreateDataProduksTable extends Migration
             $table->integer('harga_jual');
             $table->date('tanggal_pembelian');
             $table->integer('stok');
+            $table->integer('berat');
             $table->string('gambar');
             $table->integer('kategori_id');
             $table->timestamps();

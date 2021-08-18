@@ -12,4 +12,5 @@ class DataProduk extends Model
     public function pesanan(){
         return $this->hasMany(PesananDetail::class,"barang_id");
     }
+    
 }

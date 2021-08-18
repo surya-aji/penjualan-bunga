@@ -16,37 +16,41 @@
                                     <tr>
                                         <th>Tanggal Pembelian</th>
                                         <th>Gambar Produk</th>
-                                        <th>Kategori</th>
                                         <th>Nama Produk</th>
+                                        <th>Nama Produk</th>
+                                        <th>Kategori</th>
                                         <th>Stok</th>
                                         <th>Harga Jual</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                              
-                                @foreach ($produk as $item)
-                                <tr>
-                                        <td>{{$item->tanggal_pembelian}}</td>
-                                        <td><img src="{{asset('gambar-produk/'. $item->gambar )}}" alt="no image" style="width:100px;" class="rounded-circle"></td>
-                                        <td>{{$item->nama_produk}}</td>
-                                        <td>{{optional($item->produk)->jenis_kategori}}</td>
-                                        <td>{{$item->stok}}</td>
-                                        <td>{{$item->harga_jual}}</td>
-                                        <td> <button class="btn btn-primary btn-icon">
-                                            <a href="{{route('produk.edit', $item->id)}}" type="button" role="button">
-                                              <i data-feather="edit-2" style="color: white;"></i>
-                                            </a>
-                                          </button>
-                                          <form style="display: inline;" action="{{ route('produk.destroy', $item->id) }}" method="post" onsubmit="return confirm('Yakin hapus data ?')" >
-                                            @method('delete')
-                                            @csrf
-                                            <button class="btn btn-danger btn-icon">
-                                              <i data-feather="trash">a</i>
-                                            </button>
-                                          </form></td>  
-                                          <td></td>
-                                    </tr>
-                                    @endforeach
+                                <tbody>
+                                    
+                                    @foreach ($produk as $item)
+                                    <tr>
+                                            <td>{{$item->tanggal_pembelian}}</td>
+                                            <td><img src="{{asset('gambar-produk/'. $item->gambar )}}" alt="no image" style="width:100px;" class="rounded-circle"></td>
+                                            <td>{{$item->nama_produk}}</td>
+                                            <td>{{optional($item->produk)->jenis_kategori}}</td>
+                                            <td>{{$item->stok}}</td>
+                                            <td>{{$item->harga_jual}}</td>
+                                            <td> 
+                                                <button class="btn btn-primary btn-icon">
+                                                <a href="{{route('produk.edit', $item->id)}}" type="button" role="button">
+                                                  <i data-feather="edit-2" style="color: white;"></i>
+                                                </a>
+                                              </button>
+                                              <form style="display: inline;" action="{{ route('produk.destroy', $item->id) }}" method="post" onsubmit="return confirm('Yakin hapus data ?')" >
+                                                @method('delete')
+                                                @csrf
+                                                <button class="btn btn-danger btn-icon">
+                                                  <i data-feather="trash">a</i>
+                                                </button>
+                                              </form>
+                                            </td>  
+                                        </tr>
+                                        @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -86,6 +90,10 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="form-group mb-4">
+                                    <label class="form-label" for="basic-icon-default-salary">Berat Produk</label>
+                                    <input type="number" id="basic-icon-default-salary" class="form-control dt-salary" name="berat" placeholder="Satuan Gram"/>
+                                </div>
                                 <div class="form-group">
                                     <div>
                                         <label for="fp-default">Tanggal</label>
@@ -102,11 +110,11 @@
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="form-label" for="basic-icon-default-salary">Harga Jual</label>
-                                    <input type="text" id="basic-icon-default-salary" class="form-control dt-salary" name="harga_jual" />
+                                    <input type="number" id="basic-icon-default-salary" class="form-control dt-salary" name="harga_jual" />
                                 </div>
                                 <div class="form-group mb-4">
                                   <label class="form-label" for="basic-icon-default-salary">Harga Beli</label>
-                                  <input type="text" id="basic-icon-default-salary" class="form-control dt-salary" name="harga_beli" />
+                                  <input type="number" id="basic-icon-default-salary" class="form-control dt-salary" name="harga_beli" />
                               </div>
                                 <button type="submit" class="btn btn-primary data-submit mr-1">Submit</button>
                                 <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>

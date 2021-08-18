@@ -55,7 +55,7 @@
                   @endif
             </span></a>
                 </li>
-                <li class="nav-item {{ Request::segment(2) === 'admin-dashboard' ? 'active' : null }}"><a class="nav-link d-flex align-items-center" href="#" ><i data-feather="package"></i><span data-i18n="Apps">Pembelian</span></a>
+                <li class="nav-item {{ Request::segment(2) === 'pembelian' ? 'active' : null }}"><a class="nav-link d-flex align-items-center" href="<?=url('buyer/pembelian')?>" ><i data-feather="package"></i><span data-i18n="Apps">Pembelian</span></a>
                 </li>
             </ul>
         </div>

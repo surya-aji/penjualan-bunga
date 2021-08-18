@@ -55,15 +55,15 @@
                                 <i data-feather="home" class="font-medium-3"></i>
                             </span>
                             <span class="bs-stepper-label">
-                                <span class="bs-stepper-title">Address</span>
-                                <span class="bs-stepper-subtitle">Enter Your Address</span>
+                                <span class="bs-stepper-title">Alamat</span>
+                                <span class="bs-stepper-subtitle">Konfirmasi Alamat</span>
                             </span>
                         </button>
                     </div>
                     <div class="line">
                         <i data-feather="chevron-right" class="font-medium-2"></i>
                     </div>
-                    <div class="step" data-target="#step-payment">
+                    {{-- <div class="step" data-target="#step-payment">
                         <button type="button" class="step-trigger">
                             <span class="bs-stepper-box">
                                 <i data-feather="credit-card" class="font-medium-3"></i>
@@ -73,7 +73,7 @@
                                 <span class="bs-stepper-subtitle">Select Payment Method</span>
                             </span>
                         </button>
-                    </div>
+                    </div> --}}
                 </div>
                 <!-- Wizard ends -->
 
@@ -173,7 +173,8 @@
                     </div>
                     <!-- Checkout Customer Address Starts -->
                     <div id="step-address" class="content">
-                        <form id="checkout-address" class="list-view product-checkout">
+                        <form id="checkout-address" method="POST" action="{{route('check-out')}}" enctype="multipart/form-data" class="list-view product-checkout">
+                            @csrf
                             <!-- Checkout Customer Address Left starts -->
                             <div class="card">
                                 <div class="card-header flex-column align-items-start">
@@ -182,59 +183,68 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
+                                        {{-- <div class="col-md-6 col-sm-12">
+                                            <label>Provinsi Asal</label>
+                                            <select  class="select2 form-control form-control-lg" name="provinsi_asal">
+                                                <option value="">--Provinsi--</option>
+                                                @foreach ($provinsi as $provin => $value)    
+                                                <option value="{{$provin}}">{{$value}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div> --}}
                                         <div class="col-md-6 col-sm-12">
-                                            <div class="form-group mb-2">
-                                                <label for="checkout-name">Full Name:</label>
-                                                <input type="text" id="checkout-name" class="form-control" name="fname" placeholder="John Doe" />
-                                            </div>
+                                            {{-- <div class="form-group mb-2">
+                                                <label>Kota Asal</label>
+                                                <select class="select2 form-control form-control-lg" name="kota_asal">
+                                                    <option value="">--Kota--</option>
+                                                    @foreach ($kota as $kotas => $value)    
+                                                    <option value="{{$kotas}}">{{$value}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div> --}}
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            {{-- <div class="form-group mb-2">
+                                                <label>Provinsi Tujuan</label>
+                                                <select class="select2 form-control form-control-lg" name="provinsi_tujuan">
+                                                    <option value="">--Provinsi--</option>
+                                                    @foreach ($provinsi as $provin => $value)    
+                                                    <option value="{{$provin}}">{{$value}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div> --}}
                                         </div>
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group mb-2">
-                                                <label for="checkout-number">Mobile Number:</label>
-                                                <input type="number" id="checkout-number" class="form-control" name="mnumber" placeholder="0123456789" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="form-group mb-2">
-                                                <label for="checkout-apt-number">Flat, House No:</label>
-                                                <input type="number" id="checkout-apt-number" class="form-control" name="apt-number" placeholder="9447 Glen Eagles Drive" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="form-group mb-2">
-                                                <label for="checkout-landmark">Landmark e.g. near apollo hospital:</label>
-                                                <input type="text" id="checkout-landmark" class="form-control" name="landmark" placeholder="Near Apollo Hospital" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="form-group mb-2">
-                                                <label for="checkout-city">Town/City:</label>
-                                                <input type="text" id="checkout-city" class="form-control" name="city" placeholder="Tokyo" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="form-group mb-2">
-                                                <label for="checkout-pincode">Pincode:</label>
-                                                <input type="number" id="checkout-pincode" class="form-control" name="pincode" placeholder="201301" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="form-group mb-2">
-                                                <label for="checkout-state">State:</label>
-                                                <input type="text" id="checkout-state" class="form-control" name="state" placeholder="California" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="form-group mb-2">
-                                                <label for="add-type">Address Type:</label>
-                                                <select class="form-control" id="add-type">
-                                                    <option>Home</option>
-                                                    <option>Work</option>
+                                                <label>Kota Anda</label>
+                                                <select class="select2 form-control form-control-lg" name="kota_tujuan">
+                                                    <option value="">--Kota--</option>
+                                                    @foreach ($kota as $kotas => $value)    
+                                                    <option value="{{$kotas}}">{{$value}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group mb-2">
+                                                <label>Kurir</label>
+                                                <select class="select2 form-control form-control-lg" name="kurir">
+                                                    <option value="">--Kurir--</option>
+                                                    @foreach ($kurir as $kurirs => $value)    
+                                                    <option value="{{$kurirs}}">{{$value}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group mb-2">
+                                                <label for="exampleFormControlTextarea1">Detail Alamat</label>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Masukan Alamat Lengkap" name="detail_alamat"></textarea>
+                                            </div>
+                                        </div>
+                                        
                                         <div class="col-12">
-                                            <button type="button" class="btn btn-primary btn-next delivery-address">Save And Deliver Here</button>
+                                            <button type="submit" class="btn btn-primary btn-next delivery-address">Check Out</button>
                                         </div>
                                     </div>
                                 </div>
@@ -265,7 +275,7 @@
 
                     <!-- Checkout Payment Starts -->
                     <div id="step-payment" class="content">
-                        <form id="checkout-payment" class="list-view product-checkout" onsubmit="return false;">
+                        {{-- <form id="checkout-payment" class="list-view product-checkout" onsubmit="return false;">
                             <div class="payment-type">
                                 <div class="card">
                                     <div class="card-header flex-column align-items-start">
@@ -352,7 +362,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </form> --}}
                     </div>
                     <!-- Checkout Payment Ends -->
                     <!-- </div> -->
@@ -362,4 +372,92 @@
         </div>
     </div>
 </div>
+{{-- 
+<script>
+     $(document).ready(function(){
+        //active select2
+        //ajax select kota asal
+        $('select[name="province_origin"]').on('change', function () {
+            let provindeId = $(this).val();
+            if (provindeId) {
+                jQuery.ajax({
+                    url: '/../../keranjang/'+ provindeId,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (response) {
+                        $('select[name="city_origin"]').empty();
+                        $('select[name="city_origin"]').append('<option value="">-- pilih kota asal --</option>');
+                        $.each(response, function (key, value) {
+                            $('select[name="city_origin"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                });
+            } else {
+                $('select[name="city_origin"]').append('<option value="">-- pilih kota asal --</option>');
+            }
+        });
+        //ajax select kota tujuan
+        $('select[name="province_destination"]').on('change', function () {
+            let provindeId = $(this).val();
+            if (provindeId) {
+                jQuery.ajax({
+                    url: '/cities/'+provindeId,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (response) {
+                        $('select[name="city_destination"]').empty();
+                        $('select[name="city_destination"]').append('<option value="">-- pilih kota tujuan --</option>');
+                        $.each(response, function (key, value) {
+                            $('select[name="city_destination"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                });
+            } else {
+                $('select[name="city_destination"]').append('<option value="">-- pilih kota tujuan --</option>');
+            }
+        });
+        //ajax check ongkir
+        let isProcessing = false;
+        $('.btn-check').click(function (e) {
+            e.preventDefault();
+
+            let token            = $("meta[name='csrf-token']").attr("content");
+            let city_origin      = $('select[name=city_origin]').val();
+            let city_destination = $('select[name=city_destination]').val();
+            let courier          = $('select[name=courier]').val();
+            let weight           = $('#weight').val();
+
+            if(isProcessing){
+                return;
+            }
+
+            isProcessing = true;
+            jQuery.ajax({
+                url: "/ongkir",
+                data: {
+                    _token:              token,
+                    city_origin:         city_origin,
+                    city_destination:    city_destination,
+                    courier:             courier,
+                    weight:              weight,
+                },
+                dataType: "JSON",
+                type: "POST",
+                success: function (response) {
+                    isProcessing = false;
+                    if (response) {
+                        $('#ongkir').empty();
+                        $('.ongkir').addClass('d-block');
+                        $.each(response[0]['costs'], function (key, value) {
+                            $('#ongkir').append('<li class="list-group-item">'+response[0].code.toUpperCase()+' : <strong>'+value.service+'</strong> - Rp. '+value.cost[0].value+' ('+value.cost[0].etd+' hari)</li>')
+                        });
+
+                    }
+                }
+            });
+
+        });
+
+    });
+</script> --}}
 @endsection

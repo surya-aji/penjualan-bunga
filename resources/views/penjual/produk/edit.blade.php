@@ -55,6 +55,12 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="form-label" for="basic-icon-default-fullname">Berat Produk</label>
+                                            <input type="number" class="form-control dt-full-name" id="basic-icon-default-fullname" name="berat_edit" placeholder="Satuan Gram" value="{{$produk->berat}}"  />
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
                                         <div class="form-group mb-4">
                                             <label class="form-label" for="basic-icon-default-salary">Harga Beli</label>
                                             <input type="text" id="basic-icon-default-salary" class="form-control dt-salary" name="harga_beli_edit"  value="{{$produk->harga_jual}}"/>
