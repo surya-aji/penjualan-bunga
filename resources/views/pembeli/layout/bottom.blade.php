@@ -33,3 +33,4 @@
     <script src="{{asset('app-assets/js/scripts/forms/form-select2.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/extensions/polyfill.min.js')}}"></script>
     <!-- END: Page JS-->
+
