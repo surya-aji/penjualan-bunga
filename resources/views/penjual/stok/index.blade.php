@@ -7,30 +7,43 @@
         <div class="content-header row">
         </div>
         <div class="content-body">
-            <section id="basic-datatable">
+            <section id="multilingual-datatable">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <table class="datatables-basic table">
+                            <table class="dt-multilingual table">
                                 <thead>
                                     <tr>
-                                        <th>Tanggal Pembelian</th>
-                                        <th>Gambar Produk</th>
-                                        <th>Kategori</th>
-                                        <th>Nama Produk</th>
-                                        <th>Stok</th>
-                                        <th>Harga Jual</th>
-                                        <th>Action</th>
+                                        <th>Tanggal Terjual</th>
+                                        <th>Nama Pembeli</th>
+                                        <th>Alamat</th>
+                                        <th>No Telp</th>
+                                        <th>Gambar</th>
+                                        <th>Produk</th>
+                                        <th>Harga</th>
+                                        <th>Jumlah Pembelian</th>
+                                        <th>Total</th>
+                                        <th>Status Pembayaran</th>
+                                        <th>Resi</th>
+                                        <th>Status Dikirim</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <td>Lorem</td>
-                                    <td>Lorem</td>
-                                    <td>Lorem</td>
-                                    <td>Lorem</td>
-                                    <td>Lorem</td>
-                                    <td>Lorem</td>
-                                    <td>Lorem</td>
+                                    <tr>
+                                        <td>Lorem</td>
+                                        <td>Lorem</td>
+                                        <td>Lorem</td>
+                                        <td>Lorem</td>
+                                        <td>Lorem</td>
+                                        <td>Lorem</td>
+                                        <td>Lorem</td>
+                                        <td>Lorem</td>
+                                        <td>Lorem</td>
+                                        <td>Lorem</td>
+                                        <td>Lorem</td>
+                                        <td>Lorem</td>
+                                    </tr>
+                                   
                                 </tbody>
                             </table>
                         </div>

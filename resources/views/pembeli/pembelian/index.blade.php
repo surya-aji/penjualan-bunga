@@ -27,23 +27,23 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, D MMMM Y')}}</td>
                         <td>
-                            @foreach ($detail_pesanan as $i)
+                            @foreach ($detail_pesanan->where('pesanan_id',$item->id) as $i)
                                 <img class="rounded" width="50" height="50" src="{{asset('gambar-produk/'. $i->barang->gambar )}}" alt="img-placeholder" />
                             @endforeach
                         </td>
                         <td>
-                            @foreach ($detail_pesanan as $i)
-                                {{$i->barang->nama_produk}}
+                            @foreach ($detail_pesanan->where('pesanan_id',$item->id) as $i)
+                                {{$i->barang->nama_produk}} <br>
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach ($detail_pesanan->where('pesanan_id',$item->id) as $i)
+                              {{$i->barang->nama_produk}} : Rp.{{ number_format($i->barang->harga_jual) }} <br>
                              @endforeach
                         </td>
                         <td>
-                            @foreach ($detail_pesanan as $i)
-                              {{$i->barang->nama_produk}} : Rp.{{ number_format($i->barang->harga_jual) }}
-                             @endforeach
-                        </td>
-                        <td>
-                            @foreach ($detail_pesanan as $i)
-                                {{$i->barang->nama_produk}} : {{$i->jumlah}}
+                            @foreach ($detail_pesanan->where('pesanan_id',$item->id) as $i)
+                                {{$i->barang->nama_produk}} : {{$i->jumlah}} <br>
                              @endforeach
                         </td>
                         <td>Rp.{{ number_format($item->total_pembayaran + $item->ongkos_kirim) }}</td>
@@ -52,7 +52,6 @@
                         <td><button type="submit" class="btn btn-primary btn-next delivery-address">Diterima</button></td>
                     </tr>
                     @endforeach
-                   
                 </tbody>
             </table>
         </div>

@@ -14,16 +14,21 @@
                            <table class="datatables-basic table">
                                <thead>
                                    <tr>
-                                       <th>Tanggal Pembelian</th>
-                                       <th>Gambar Produk</th>
-                                       <th>Kategori</th>
+                                       <th>Tanggal Beli</th>
+                                       <th>Pembeli</th>
+                                       <th>Alamat</th>
+                                       <th>Nomor Telepon</th>
                                        <th>Nama Produk</th>
-                                       <th>Stok</th>
+                                       <th>Jumlah Pembelian</th>
+                                       <th>Harga Beli</th>
+                                       <th>Total Harga Beli</th>
                                        <th>Harga Jual</th>
-                                       <th>Action</th>
+                                       <th>Total Harga Jual</th>
+                                       <th>Keuntungan</th>
                                    </tr>
                                </thead>
                                <tbody>
+                                   <tr>
                                    <td>Lorem</td>
                                    <td>Lorem</td>
                                    <td>Lorem</td>
@@ -31,13 +36,18 @@
                                    <td>Lorem</td>
                                    <td>Lorem</td>
                                    <td>Lorem</td>
+                                   <td>Lorem</td>
+                                   <td>Lorem</td>
+                                   <td>Lorem</td>
+                                   <td>Lorem</td>
+                                </tr>
                                </tbody>
                            </table>
                        </div>
                    </div>
                </div>
                <!-- Modal to add new record -->
-               <div class="modal modal-slide-in fade" id="modals-slide-in">
+               {{-- <div class="modal modal-slide-in fade" id="modals-slide-in">
                    <div class="modal-dialog sidebar-sm">
                        <form class="add-new-record modal-content pt-0">
                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
@@ -75,7 +85,7 @@
                            </div>
                        </form>
                    </div>
-               </div>
+               </div> --}}
            </section>
            <!--/ Basic table -->
 

@@ -132,9 +132,14 @@ class PesanController extends Controller
         $pesanan->resi = mt_rand(100000, 999999);
         $pesanan->status = 1;
         $pesanan->ongkos_kirim = $biaya['value'];
-        $pesanan->alamat_lengkap = $request->detail_alamat;
+        $pesanan->kurir =  $kurir;
+        $pesanan->layanan =  $layanan;
+        if(!empty($request->detail_alamat)){
+            $pesanan->alamat_lengkap = $request->detail_alamat;
+        }else{
+            $pesanan->alamat_lengkap = Auth::user()->detail->alamat_lengkap;
+        }
         $pesanan->update();
-
         $barang->stok = $barang->stok - $detail->jumlah ; // pengurangan stok ketika sudah check out
         $barang->update();
 
@@ -162,7 +167,7 @@ class PesanController extends Controller
         $pesanan = Pesanan::where('user_id',Auth::user()->id)->where('status',1)->get();
 
         $getdataPesan = Pesanan::where('user_id',Auth::user()->id)->where('status',1)->first();
-        $detail_pesanan = PesananDetail::where('pesanan_id',$getdataPesan->id)->get();
+        $detail_pesanan = PesananDetail::all();
 
         return view('pembeli.pembelian.index',compact('pesanan','detail_pesanan'));
     }
