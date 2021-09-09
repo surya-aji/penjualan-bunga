@@ -15,4 +15,7 @@ class UserDetail extends Model
         return $this->belongsTo(User::class, 'id');
     }
   
+    public function pemesanan(){
+        return $this->hasMany(Pesanan::class, 'user_id','user_id');
+    }
 }

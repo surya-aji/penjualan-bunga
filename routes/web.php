@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'buyer','middleware' => 'buyer'],function(){
         Route::get('/dashboard','DashboardController@index');
         Route::get('/kategori/{id}','Buyer\Index\IndexController@index')->name('halaman-kategori');
+        Route::get('/kategori/produk/cari','Buyer\Index\IndexController@cariProduk')->name('cari-produk');
         Route::get('/pesan/{id}','Buyer\pembelian\PesanController@index')->name('pesan');
         Route::post('/ambil-pesan/{id}','Buyer\pembelian\PesanController@pesan')->name('masukan-keranjang');
 
@@ -54,17 +55,14 @@ Route::middleware(['auth'])->group(function () {
             return view('penjual.layout.dashboard');
         });
         
-        Route::get('/penjualan', function () {
-            return view('penjual.stok.index');
-        });
+        Route::get('/penjualan', 'Seller\Penjualan\PenjualanController@index');
+        Route::post('/penjualan/resi/{id}', 'Seller\Penjualan\PenjualanController@cetakResi')->name('cetak-resi');
+        Route::post('/penjualan/validasi/{id}', 'Seller\Penjualan\PenjualanController@validasi')->name('validasi-kirim');
 
-       Route::resource('/produk', 'Seller\Produk\DataProdukController');
-       Route::resource('/kategori', 'Seller\Produk\DataKategoriController');
+        Route::resource('/produk', 'Seller\Produk\DataProdukController');
+        Route::resource('/kategori', 'Seller\Produk\DataKategoriController');
         Route::resource('/data-supplier', 'Seller\Supplier\SupplierController');
-
-        Route::get('/laporan', function () {
-            return view('penjual.laporan.index');
-        });
+        Route::get('/laporan', 'Seller\Laporan\LaporanController@index');
 
 });
 

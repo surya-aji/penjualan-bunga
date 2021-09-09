@@ -48,7 +48,13 @@
                         </td>
                         <td>Rp.{{ number_format($item->total_pembayaran + $item->ongkos_kirim) }}</td>
                         <td><button type="submit" class="btn btn-primary btn-next delivery-address">Bayar</button></td>
-                        <td>{{$item->resi}}</td>
+                        <td>
+                            @if (!empty($item->resi))
+                                {{$item->resi}}
+                            @else
+                            <button type="button" class="btn btn-outline-primary data-submit mr-1 disabled">Menunggu Konfirmasi Dari Penjual</button>
+                            @endif
+                        </td>
                         <td><button type="submit" class="btn btn-primary btn-next delivery-address">Diterima</button></td>
                     </tr>
                     @endforeach

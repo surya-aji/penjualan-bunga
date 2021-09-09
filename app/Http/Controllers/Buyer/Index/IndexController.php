@@ -15,4 +15,16 @@ class IndexController extends Controller
         ->get();
         return view('pembeli.kategori.index',compact('produk'));
     }
+
+    public function cariProduk(Request $request){
+        $cari = $request->cari;
+ 
+    		// mengambil data dari table produk sesuai pencarian data
+        $produk = DB::table('data_produks')
+		->where('nama_produk','like',"%".$cari."%")
+		->paginate();
+ 
+    		// mengirim data produk ke view index
+            return view('pembeli.kategori.index',compact('produk'));
+    }
 }

@@ -20,6 +20,8 @@ class PesanController extends Controller
         $barang =  DataProduk::where('id',$id)->first();
         return view('pembeli.kategori.pesan',compact('barang'));
     }
+
+    
     public function pesan(Request $request,$id){
         $barang =  DataProduk::where('id',$id)->first();
 
@@ -129,7 +131,7 @@ class PesanController extends Controller
         $kurir = $cost[0]['name']; //ambil data nama kurir
         $layanan = $cost[0]['costs'][0]['service']; // ambil data layanan yang dipakai
         
-        $pesanan->resi = mt_rand(100000, 999999);
+        // $pesanan->resi = mt_rand(100000, 999999);
         $pesanan->status = 1;
         $pesanan->ongkos_kirim = $biaya['value'];
         $pesanan->kurir =  $kurir;

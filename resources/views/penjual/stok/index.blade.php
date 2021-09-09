@@ -16,73 +16,118 @@
                                     <tr>
                                         <th>Tanggal Terjual</th>
                                         <th>Nama Pembeli</th>
-                                        <th>Alamat</th>
-                                        <th>No Telp</th>
-                                        <th>Gambar</th>
-                                        <th>Produk</th>
-                                        <th>Harga</th>
-                                        <th>Jumlah Pembelian</th>
-                                        <th>Total</th>
                                         <th>Status Pembayaran</th>
                                         <th>Resi</th>
                                         <th>Status Dikirim</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($data_pesanan as $item)
                                     <tr>
-                                        <td>Lorem</td>
-                                        <td>Lorem</td>
-                                        <td>Lorem</td>
-                                        <td>Lorem</td>
-                                        <td>Lorem</td>
-                                        <td>Lorem</td>
-                                        <td>Lorem</td>
-                                        <td>Lorem</td>
-                                        <td>Lorem</td>
-                                        <td>Lorem</td>
-                                        <td>Lorem</td>
-                                        <td>Lorem</td>
+                                        <td>
+                                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-backdrop="false" data-target="#backdrop{{$item->id}}">
+                                                {{Carbon\Carbon::parse($item->tanggal)->isoFormat('dddd, D MMMM Y')}}
+                                            </button></td>
+                                        <td>{{$item->pesan->nama}}</td>
+                                        <td>{{$item->status_pembayaran == 1 ? 'Telah Dibayar' : 'Belum Dibayar'}}</td>
+                                        <td>
+                                            @if ($item->resi == null)
+                                            <button type="button" class="btn btn-primary data-submit" data-toggle="modal" data-target="#inlineForm{{$item->id}}">Kirim Resi</button>
+                                            @else
+                                            {{$item->resi}}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($item->status_pembayaran == 1 && $item->status_pengiriman == 1)
+                                                <button type="button" class="btn btn-success data-submit mr-1">Pesanan Dikirim</button>
+                                            @elseif($item->status_pembayaran == 0 && $item->status_pengiriman == 0)
+                                            <button type="button" class="btn btn-outline-primary data-submit mr-1 disabled">Menunggu Pembayaran</button>
+                                            @else
+                                            <form action="{{route('validasi-kirim',$item->id)}}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                            <button type="submit" class="btn btn-primary data-submit mr-1">Validasi Pengiriman</button>
+                                            </form>
+                                            @endif
+                                        </td>
                                     </tr>
+
+                                    {{-- Modal --}}
+                                    <div class="modal fade text-left" id="backdrop{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="myModalLabel4">Detail Pembelian</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <label class="form-label" for="basic-icon-default-post">Nama Pembeli</label>
+                                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="Nama Pembeli" aria-label="John Doe" value="{{$item->pesan->nama}}" disabled />
+
+                                                    <label class="form-label" for="basic-icon-default-post">Nomor Telepon</label>
+                                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="Nama Pembeli" aria-label="John Doe" value="{{$item->pesan->no_telp}}" disabled />
+
+
+                                                    <label class="form-label" for="basic-icon-default-post">Alamat</label>
+                                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="Nama Pembeli" aria-label="John Doe" value="{{$item->alamat_lengkap}}" disabled />
+
+                                                    <label class="form-label" for="basic-icon-default-post">Produk</label>
+                                                    @foreach ($detail_pesanan->where('pesanan_id',$item->id) as $i)
+                                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="Nama Pembeli" aria-label="John Doe" value="{{$i->barang->nama_produk}} Harga : Rp.{{$i->barang->harga_awal}} Dengan Jumlah : {{$i->jumlah}} 
+                                                    " disabled /> <br>
+                                                    @endforeach
+                                                    <label class="form-label" for="basic-icon-default-post">Total Yang dibayar</label>
+                                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" aria-label="John Doe" value="{{$item->total_pembayaran}}" disabled /><br>
+
+                                                    @foreach ($detail_pesanan->where('pesanan_id',$item->id) as $i)
+                                                        <img class="rounded" width="120" height="120" src="{{asset('gambar-produk/'. $i->barang->gambar )}}" alt="img-placeholder" />
+                                                    @endforeach
+                                                  
+                                                   
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {{-- Modal Resi --}}
+                                    <div class="modal fade text-left" id="inlineForm{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="myModalLabel33">Penambahan Resi</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="{{route('cetak-resi',$item->id)}}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="modal-body">
+                                                        <label>Resi: </label>
+                                                        <div class="form-group">
+                                                            <input type="text" placeholder="Nomor Resi" class="form-control" name="resi" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Kirim Resi</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    @endforeach
+
+
+                                 
                                    
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                </div>
-                <!-- Modal to add new record -->
-                <div class="modal modal-slide-in fade" id="modals-slide-in">
-                    <div class="modal-dialog sidebar-sm">
-                        <form class="add-new-record modal-content pt-0">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
-                            <div class="modal-header mb-1">
-                                <h5 class="modal-title" id="exampleModalLabel">New Record</h5>
-                            </div>
-                            <div class="modal-body flex-grow-1">
-                                <div class="form-group">
-                                    <label class="form-label" for="basic-icon-default-fullname">Full Name</label>
-                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="John Doe" aria-label="John Doe" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="basic-icon-default-post">Post</label>
-                                    <input type="text" id="basic-icon-default-post" class="form-control dt-post" placeholder="Web Developer" aria-label="Web Developer" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="basic-icon-default-email">Email</label>
-                                    <input type="text" id="basic-icon-default-email" class="form-control dt-email" placeholder="john.doe@example.com" aria-label="john.doe@example.com" />
-                                    <small class="form-text text-muted"> You can use letters, numbers & periods </small>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="basic-icon-default-date">Joining Date</label>
-                                    <input type="text" class="form-control dt-date" id="basic-icon-default-date" placeholder="MM/DD/YYYY" aria-label="MM/DD/YYYY" />
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label class="form-label" for="basic-icon-default-salary">Salary</label>
-                                    <input type="text" id="basic-icon-default-salary" class="form-control dt-salary" placeholder="$12000" aria-label="$12000" />
-                                </div>
-                                <button type="button" class="btn btn-primary data-submit mr-1">Submit</button>
-                                <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </section>
