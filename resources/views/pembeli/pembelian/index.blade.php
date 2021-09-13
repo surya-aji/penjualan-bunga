@@ -47,11 +47,15 @@
                              @endforeach
                         </td>
                         <td>Rp.{{ number_format($item->total_pembayaran + $item->ongkos_kirim) }}</td>
-                        <td>@if($item->status_pembayaran == 0)
-                            <a href="/buyer/pembelian/{{$item->id}}/detail" id="pay-button"   type="button" class="btn btn-danger btn-sm">Klik Untuk Bayar</a></td>
+                        <td>
+                            @if($item->status_pembayaran == 0)
+                                <a href="/buyer/pembelian/{{$item->id}}/detail" id="pay-button"   type="button" class="btn btn-danger btn-sm">Klik Untuk Bayar</a>
+                            @elseif($item->status_pembayaran == '0' && $stats['status_pembayaran'] == 'pending')
+                                <span class="btn btn-success btn-sm">Tunggu Konfirmasi Admin</span>
                             @else
-                            <a href="/buyer/pembelian/{{$item->id}}/detail" id="pay-button"   type="button" class="btn btn-success btn-sm">Sudah Dibayar</a></td>
+                                <a href="/buyer/pembelian/{{$item->id}}/detail" id="pay-button"   type="button" class="btn btn-success btn-sm">Sudah Dibayar</a>
                             @endif
+                        </td>
                         <td>{{$item->resi}}</td>
                         <td><span type="submit" class="btn btn-primary btn-sm">Diterima</span></td>
                     </tr>

@@ -19,6 +19,9 @@ use App\UserDetail;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Kavist\RajaOngkir\Facades\RajaOngkir;
+use Midtrans\Transaction;
+use Midtrans\ApiRequestor;
+use Throwable;
 
 class PesanController extends Controller
 {
@@ -143,8 +146,8 @@ class PesanController extends Controller
         $pesanan->status = 1;
         $pesanan->ongkos_kirim = $biaya['value'];
         $pesanan->alamat_lengkap = $request->detail_alamat;
-        $pesanan->kurir = $kurir['value'];
-        $pesanan->layanan = $layanan['value'];
+        $pesanan->kurir = $kurir;
+        $pesanan->layanan = $layanan;
         
         $barang->stok = $barang->stok - $detail->jumlah ; // pengurangan stok ketika sudah check out
         
@@ -167,17 +170,12 @@ class PesanController extends Controller
     }
 
     public function pembelian(){
-
         $pesanan = Pesanan::where('user_id',Auth::user()->id)->where('status',1)->get();
 
         $getdataPesan = Pesanan::where('user_id',Auth::user()->id)->where('status',1)->first();
         $detail_pesanan = PesananDetail::where('pesanan_id',$getdataPesan->id)->get();
         // $detail_barang = DataProduk::all();
         $st = $this->snapToken;
-
-
-
-
         return view('pembeli.pembelian.index',compact('pesanan','detail_pesanan', 'st'));
 
 
@@ -205,25 +203,28 @@ class PesanController extends Controller
         $detail_pesanan = PesananDetail::where('pesanan_id',$getdataPesan->id)->get();
         
         $this->user_detail = UserDetail::find(Auth::user()->id);
-        $ud = $this->user_detail;
-        
+        $ud = $this->user_detail;        
         if (!empty($getdataPesan)) {
             if ($getdataPesan->status_pembayaran == 0) {
-                $params = array(
-                    'transaction_details' => array(
-                        'order_id' => $getdataPesan->resi,
-                        'gross_amount' => $getdataPesan->total_pembayaran + $getdataPesan->ongkos_kirim,
-                    ),
-                    'customer_details' => array(
-                        'first_name' => '[Saudara/Saudari]',
-                        'last_name' => Auth::user()->name,
-                        'email' => Auth::user()->email,
-                        'phone' => $this->user_detail->no_telp,
-                    ),
-                );
-                $this->snapToken = \Midtrans\Snap::getSnapToken($params);
-                $st = $this->snapToken;
-                $status = 0;
+                try {
+                    $params = array(
+                        'transaction_details' => array(
+                            'order_id' => $getdataPesan->resi,
+                            'gross_amount' => $getdataPesan->total_pembayaran + $getdataPesan->ongkos_kirim,
+                        ),
+                        'customer_details' => array(
+                            'first_name' => '[Saudara/Saudari]',
+                            'last_name' => Auth::user()->name,
+                            'email' => Auth::user()->email,
+                            'phone' => $this->user_detail->no_telp,
+                        ),
+                    );
+                    $this->snapToken = \Midtrans\Snap::getSnapToken($params);                
+                    $st = $this->snapToken;
+                    $status = 0;
+                } catch (Throwable $e) {
+                    return redirect('buyer/pembelian');
+                }
                 
             }elseif($getdataPesan->status_pembayaran == 1){
                 $st = $this->snapToken;
@@ -235,7 +236,6 @@ class PesanController extends Controller
                     $this->transaction_status = $status['transaction_status'];
                     $transaction_time = $status['transaction_time'];
                     $this->dead_line = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($transaction_time)));
-                    
                 }else{
                     $this->gross_amount = $status['gross_amount'];
                     $this->transaction_status = $status['transaction_status'];
@@ -243,16 +243,12 @@ class PesanController extends Controller
                     $this->dead_line = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($transaction_time)));
                 }
             }
-            // dd($status);
         }
-       
-
         return view('pembeli.pembelian.detail',compact('pesanan','detail_pesanan','st','ud','getdataPesan', 'status'));
-
     }
 
     public function pembelianFinish()
     {
         
-    }
+    }   
 }
