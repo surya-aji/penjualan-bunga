@@ -8,14 +8,26 @@ use App\Pesanan;
 use App\Provinsi;
 use App\DataProduk;
 use App\PesananDetail;
+use App\User;
+use App\user_detail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
+use App\Order;
+use App\ProdukDetail;
+use App\UserDetail;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Kavist\RajaOngkir\Facades\RajaOngkir;
 
 class PesanController extends Controller
 {
+    
+    private $snapToken;
+    private $pesanan;
+    private $detail_pesanan;
+    private $user_detail;
+
     public function index($id){
         $barang =  DataProduk::where('id',$id)->first();
         return view('pembeli.kategori.pesan',compact('barang'));
@@ -80,7 +92,6 @@ class PesanController extends Controller
         $pesanan->total_pembayaran = $total_keseluaran_pesanan_detail ;// $pesanan->total_pembayaran + sum('');
         $pesanan->update();
 
-
         return redirect('buyer/keranjang');
 
     }
@@ -95,7 +106,7 @@ class PesanController extends Controller
         //Ambil Data Keranjang
         $pesanan = Pesanan::where('user_id',Auth::user()->id)->where('status',0)->first();
 
-
+        
         if(!empty($pesanan)){
             $detail_pesanan =  PesananDetail::where('pesanan_id',$pesanan->id)->get();
             return view('pembeli.keranjang.index',compact('detail_pesanan','pesanan','kurir','provinsi','kota'));
@@ -108,17 +119,16 @@ class PesanController extends Controller
     }
 
     public function check_ongkir(Request $request)
-    {
+    { 
+         
         // Ambil Data
         $pesanan = Pesanan::where('user_id',Auth::user()->id)->where('status',0)->first();
         $detail_pesanan = PesananDetail::where('pesanan_id',$pesanan->id)->sum('jumlah_berat');
         $detail = PesananDetail::where('pesanan_id',$pesanan->id)->first();
         $barang =  DataProduk::where('id',$detail->barang_id)->first();
+        // dd($getdataPesan);
+        // die();
 
-        
-
-
-        
 
         $cost = RajaOngkir::ongkosKirim([
             'origin'        => 42,     // ID kota/kabupaten banyuwangi
@@ -143,17 +153,14 @@ class PesanController extends Controller
         }
         $pesanan->update();
         $barang->stok = $barang->stok - $detail->jumlah ; // pengurangan stok ketika sudah check out
+        
+        $pesanan->update();
         $barang->update();
-
 
         return redirect('buyer/pembelian');
 
-
-        // dd($layanan);
-        // dd($biaya['value']);
-        // dd($detail_pesanan);
     }
-
+    
     public function hapusKeranjang($id){
         $delete = PesananDetail::findOrFail($id);
         $pesanan = Pesanan::where('user_id',Auth::user()->id)->where('status',0)->first();
@@ -166,13 +173,94 @@ class PesanController extends Controller
     }
 
     public function pembelian(){
+
         $pesanan = Pesanan::where('user_id',Auth::user()->id)->where('status',1)->get();
 
         $getdataPesan = Pesanan::where('user_id',Auth::user()->id)->where('status',1)->first();
         $detail_pesanan = PesananDetail::all();
 
+        // $detail_pesanan = PesananDetail::where('pesanan_id',$getdataPesan->id)->get();
+
+        // $st = $this->snapToken;
+
+
+
+
         return view('pembeli.pembelian.index',compact('pesanan','detail_pesanan'));
+
+
     }
 
+    public function pembelianDetail($id)
+    {
+        // midtrans
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = 'Mid-server-4apdLLraTf_v44fK9GBNptEK';
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = true;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;  
+        
+        
 
+        $pesanan = Pesanan::where('user_id',Auth::user()->id)->where('status',1)->where('id',$id)->get();
+        $detail_produk = PesananDetail::where('barang_id', 2)->get();
+        $barang[''] = DataProduk::find($id);
+        
+        $getdataPesan = Pesanan::where('user_id',Auth::user()->id)->where('status',1)->where('id',$id)->first();
+        $detail_pesanan = PesananDetail::where('pesanan_id',$getdataPesan->id)->get();
+        
+        $this->user_detail = UserDetail::find(Auth::user()->id);
+        $ud = $this->user_detail;
+        
+        if (!empty($getdataPesan)) {
+            if ($getdataPesan->status_pembayaran == 0) {
+                $params = array(
+                    'transaction_details' => array(
+                        'order_id' => $getdataPesan->resi,
+                        'gross_amount' => $getdataPesan->total_pembayaran + $getdataPesan->ongkos_kirim,
+                    ),
+                    'customer_details' => array(
+                        'first_name' => '[Saudara/Saudari]',
+                        'last_name' => Auth::user()->name,
+                        'email' => Auth::user()->email,
+                        'phone' => $this->user_detail->no_telp,
+                    ),
+                );
+                $this->snapToken = \Midtrans\Snap::getSnapToken($params);
+                $st = $this->snapToken;
+                $status = 0;
+                
+            }elseif($getdataPesan->status_pembayaran == 1){
+                $st = $this->snapToken;
+                $status = \Midtrans\Transaction::status($getdataPesan->resi);
+                $status = json_decode(json_encode($status), true);
+                // dd($status);
+                if($status['transaction_status'] == 'settlement'){
+                    $this->gross_amount = $status['gross_amount'];
+                    $this->transaction_status = $status['transaction_status'];
+                    $transaction_time = $status['transaction_time'];
+                    $this->dead_line = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($transaction_time)));
+                    
+                }else{
+                    $this->gross_amount = $status['gross_amount'];
+                    $this->transaction_status = $status['transaction_status'];
+                    $transaction_time = $status['transaction_time'];
+                    $this->dead_line = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($transaction_time)));
+                }
+            }
+            // dd($status);
+        }
+       
+
+        return view('pembeli.pembelian.detail',compact('pesanan','detail_pesanan','st','ud','getdataPesan', 'status'));
+
+    }
+
+    public function pembelianFinish()
+    {
+        
+    }
 }

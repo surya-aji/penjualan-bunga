@@ -76,7 +76,6 @@
                     </div> --}}
                 </div>
                 <!-- Wizard ends -->
-
                 <div class="bs-stepper-content">
                     <!-- Checkout Place order starts -->
                     <div id="step-cart" class="content">
@@ -163,6 +162,7 @@
                                                 </li>
                                             </ul>
                                             <button type="button" class="btn btn-primary btn-block btn-next place-order">Lanjutkan</button>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -245,7 +245,9 @@
                                         
                                         <div class="col-12">
                                             <button type="submit" class="btn btn-primary btn-next delivery-address">Check Out</button>
-                                        </div>
+                                            
+                                            
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -459,5 +461,8 @@
         });
 
     });
-</script> --}}
+</script> 
+--}}
+
+
 @endsection

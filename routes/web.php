@@ -42,8 +42,11 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/hapus-keranjang/{id}', 'Buyer\pembelian\PesanController@hapusKeranjang')->name('hapus-keranjang');
         Route::get('/keranjang', 'Buyer\pembelian\PesanController@keranjang');
         Route::post('/keranjang', 'Buyer\pembelian\PesanController@check_ongkir')->name('check-out');
+        // Route::get('/keranjang', 'Buyer\pembelian\PesanController@check_ongkir')->name('check-out');
         Route::get('keranjang/{id}', 'Buyer\pembelian\PesanController@getCities')->name('get-kota');
         Route::get('pembelian', 'Buyer\pembelian\PesanController@pembelian');
+        Route::get('pembelian/{id}/detail', 'Buyer\pembelian\PesanController@pembelianDetail')->name('pembelianDetail');
+        Route::post('pembelian/{id}/finish', 'midtransnController@beli')->name('pembelianfinish');
     });
 
 
@@ -58,6 +61,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/penjualan', 'Seller\Penjualan\PenjualanController@index');
         Route::post('/penjualan/resi/{id}', 'Seller\Penjualan\PenjualanController@cetakResi')->name('cetak-resi');
         Route::post('/penjualan/validasi/{id}', 'Seller\Penjualan\PenjualanController@validasi')->name('validasi-kirim');
+
+        // Route::get('/penjualan', 'Seller\order\OrderController@index');
+        // Route::get('/penjualan/{id}/detail', 'Seller\order\OrderController@detail');
+        // Route::post('/penjualan/{id}/update', 'Seller\order\OrderController@update')->name('updateOrder');
+
 
         Route::resource('/produk', 'Seller\Produk\DataProdukController');
         Route::resource('/kategori', 'Seller\Produk\DataKategoriController');
