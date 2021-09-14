@@ -49,11 +49,9 @@
                         <td>Rp.{{ number_format($item->total_pembayaran + $item->ongkos_kirim) }}</td>
                         <td>
                             @if($item->status_pembayaran == 0)
-                                <a href="/buyer/pembelian/{{$item->id}}/detail" id="pay-button"   type="button" class="btn btn-danger btn-sm">Klik Untuk Bayar</a>
-                            @elseif($item->status_pembayaran == '0' && $stats['status_pembayaran'] == 'pending')
-                                <span class="btn btn-success btn-sm">Tunggu Konfirmasi Admin</span>
+                                <a href="/buyer/pembelian/{{$item->id}}/detail" id="pay-button" type="button" class="btn btn-danger btn-sm" onclick="alert('Bila Halaman Tidak Berpindah Ke Halaman Pembayaran. Harap Konfirmasi Kepada admin untuk mengubah status pembayaran');">Klik Untuk Bayar</a>
                             @else
-                                <a href="/buyer/pembelian/{{$item->id}}/detail" id="pay-button"   type="button" class="btn btn-success btn-sm">Sudah Dibayar</a>
+                                <a href="/buyer/pembelian/{{$item->id}}/detail" id="pay-button" type="button" class="btn btn-success btn-sm">Sudah Dibayar</a>
                             @endif
                         </td>
                         <td>{{$item->resi}}</td>

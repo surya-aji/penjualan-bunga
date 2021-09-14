@@ -175,10 +175,8 @@ class PesanController extends Controller
         $getdataPesan = Pesanan::where('user_id',Auth::user()->id)->where('status',1)->first();
         $detail_pesanan = PesananDetail::where('pesanan_id',$getdataPesan->id)->get();
         // $detail_barang = DataProduk::all();
-        $st = $this->snapToken;
-        return view('pembeli.pembelian.index',compact('pesanan','detail_pesanan', 'st'));
 
-
+        return view('pembeli.pembelian.index',compact('pesanan','detail_pesanan'));
     }
 
     public function pembelianDetail($id)
