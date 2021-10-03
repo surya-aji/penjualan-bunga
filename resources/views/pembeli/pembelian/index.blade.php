@@ -48,20 +48,33 @@
                         </td>
                         <td>Rp.{{ number_format($item->total_pembayaran + $item->ongkos_kirim) }}</td>
                         
-                        @if($item->status_pembayaran == 0)
+                        {{-- @if($item->status_pembayaran == 0)
                         <td><a href="/buyer/pembelian/{{$item->id}}/detail" id="pay-button"   type="button" class="btn btn-danger btn-sm">Klik Untuk Bayar</a></td>
                         @else
                         <td><a href="/buyer/pembelian/{{$item->id}}/detail" id="pay-button"   type="button" class="btn btn-success btn-sm">Sudah Dibayar</a></td>
-                        @endif
+                        @endif --}}
                         
-                        <td>
+                        {{-- <td>
                             @if (!empty($item->resi))
                                 {{$item->resi}}
                             @else
                             <button type="button" class="btn btn-outline-primary data-submit mr-1 disabled">Menunggu Konfirmasi Dari Penjual</button>
                             @endif
                         </td>
-                        <td><button type="submit" class="btn btn-primary btn-next delivery-address">Diterima</button></td>
+                        <td><button type="submit" class="btn btn-primary btn-next delivery-address">Diterima</button></td> --}}
+
+
+                        <td>
+                            @if($item->status_pembayaran == 0)
+                                <a href="/buyer/pembelian/{{$item->id}}/detail" id="pay-button"   type="button" class="btn btn-danger btn-sm">Klik Untuk Bayar</a>
+                            @elseif($item->status_pembayaran == '0' && $stats['status_pembayaran'] == 'pending')
+                                <span class="btn btn-success btn-sm">Tunggu Konfirmasi Admin</span>
+                            @else
+                                <a href="/buyer/pembelian/{{$item->id}}/detail" id="pay-button"   type="button" class="btn btn-success btn-sm">Sudah Dibayar</a>
+                            @endif
+                        </td>
+                        <td>{{$item->resi}}</td>
+                        <td><span type="submit" class="btn btn-primary btn-sm">Diterima</span></td>
 
                     </tr>
                     @endforeach

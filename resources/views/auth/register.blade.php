@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+Register Kembyang Isun
+@endsection
 @section('content')
 {{-- <div class="container">
     <div class="row justify-content-center">
@@ -108,7 +110,7 @@
                                 </g>
                             </g>
                         </svg>
-                        <h2 class="brand-text text-primary ml-1">Vuexy</h2>
+                        <h2 class="brand-text text-primary ml-1">KembyangIsun</h2>
                     </a>
                     <!-- /Brand logo-->
                     <!-- Left Text-->
@@ -120,7 +122,6 @@
                     <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
                         <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
                             <h2 class="card-title font-weight-bold mb-1">Adventure starts here 🚀</h2>
-                            <p class="card-text mb-2">Make your app management easy and fun!</p>
                             <form class="auth-register-form mt-2" action="{{ route('register') }}" method="POST">
                                @csrf 
                                <div class="form-group">
@@ -187,10 +188,7 @@
                                 <button type="submit" class="btn btn-primary btn-block" tabindex="5">Sign up</button>
                             </form>
                             <p class="text-center mt-2"><span>Already have an account?</span><a href="{{ route('login') }}"><span>&nbsp;Sign in instead</span></a></p>
-                            <div class="divider my-2">
-                                <div class="divider-text">or</div>
-                            </div>
-                            <div class="auth-footer-btn d-flex justify-content-center"><a class="btn btn-facebook" href="javascript:void(0)"><i data-feather="facebook"></i></a><a class="btn btn-twitter white" href="javascript:void(0)"><i data-feather="twitter"></i></a><a class="btn btn-google" href="javascript:void(0)"><i data-feather="mail"></i></a><a class="btn btn-github" href="javascript:void(0)"><i data-feather="github"></i></a></div>
+                           
                         </div>
                     </div>
                     <!-- /Register-->

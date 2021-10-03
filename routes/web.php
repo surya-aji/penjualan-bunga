@@ -44,7 +44,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/keranjang', 'Buyer\pembelian\PesanController@check_ongkir')->name('check-out');
         // Route::get('/keranjang', 'Buyer\pembelian\PesanController@check_ongkir')->name('check-out');
         Route::get('keranjang/{id}', 'Buyer\pembelian\PesanController@getCities')->name('get-kota');
-        Route::get('pembelian', 'Buyer\pembelian\PesanController@pembelian');
+        Route::get('pembelian', 'Buyer\pembelian\PesanController@pembelian')->name('pembelian');
         Route::get('pembelian/{id}/detail', 'Buyer\pembelian\PesanController@pembelianDetail')->name('pembelianDetail');
         Route::post('pembelian/{id}/finish', 'midtransnController@beli')->name('pembelianfinish');
     });

@@ -136,8 +136,6 @@
                         $("#payment-form").submit();
                     }
                 });
-
-
             }
         </script>
     </div>
