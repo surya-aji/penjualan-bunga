@@ -42,7 +42,6 @@
                             <div class="detail-amt font-weight-bolder">{{$getdataPesan->alamat_lengkap}}</div>
                         </li>
                     </ul>
-                    @if($st == null)
                     <h6 class="price-title">Transaksi</h6>
                     <ul class="list-unstyled">
                         @if($status['transaction_status'] == 'settlement')
@@ -51,10 +50,17 @@
                             <div class="detail-amt font-weight-bolder">{{$status['settlement_time']}}</div>
                         </li>
                         @else
-                        <li class="price-detail">
-                            <div class="detail-title">VA Number / Bill Key: </div>
-                            <div class="detail-amt font-weight-bolder">{{$status['bill_key']}}</div>
-                        </li>
+                            @if(!empty($status['va_numbers']))
+                            <li class="price-detail">
+                                <div class="detail-title">VA Number / Bill Key: </div>
+                                <div class="detail-amt font-weight-bolder">{{$status['va_numbers'][0]['va_number']}}</div>
+                            </li>
+                            @else
+                            <li class="price-detail">
+                                <div class="detail-title">VA Number / Bill Key: </div>
+                                <div class="detail-amt font-weight-bolder">{{$status['bill_key']}}</div>
+                            </li>
+                            @endif
                         @endif
                         <li class="price-detail">
                             <div class="detail-title">Total yan harus dibayarkan pada bank/transfer : </div>
@@ -73,7 +79,6 @@
                             <div class="detail-amt font-weight-bolder">{{date('Y-m-d H:i:s', strtotime('+1 day', strtotime($status['transaction_time'])))}}</div>
                         </li>
                     </ul>
-                    @endif
                     <hr />
                     <ul class="list-unstyled">
                         <li class="price-detail">
@@ -84,9 +89,9 @@
                         </li>
                     </ul>
                     @if($getdataPesan->status_pembayaran == '0')
-                    <form class="form form-vertical" method="POST" action="/seller/penjualan/{{$getdataPesan->id}}/update" enctype="multipart/form-data">
+                    <form class="form form-vertical" method="post" action="{{route('updateOrder', $getdataPesan->id)}}" enctype="multipart/form-data">
+                        @method('PATCH')
                         @csrf
-                        @method('patch')
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group mb-4">

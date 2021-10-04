@@ -57,10 +57,17 @@
                             <div class="detail-amt">{{$status['settlement_time']}}</div>
                         </li>
                         @else
-                        <li class="price-detail">
-                            <div class="detail-title">VA Number / Bill Key</div>
-                            <div class="detail-amt">{{$status['bill_key']}}</div>
-                        </li>
+                            @if(!empty($status['va_numbers']))
+                                <li class="price-detail">
+                                    <div class="detail-title">VA Number / Bill Key</div>
+                                    <div class="detail-amt">{{$status['va_numbers'][0]['va_number']}}</div>
+                                </li>
+                            @else
+                                <li class="price-detail">
+                                    <div class="detail-title">VA Number / Bill Key</div>
+                                    <div class="detail-amt">{{$status['bill_key']}}</div>
+                                </li>
+                            @endif    
                         @endif
                         <li class="price-detail">
                             <div class="detail-title">Total yan harus dibayarkan pada bank/transfer</div>

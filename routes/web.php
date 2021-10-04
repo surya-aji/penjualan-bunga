@@ -59,7 +59,7 @@ Route::middleware(['auth'])->group(function () {
         
         Route::get('/penjualan', 'Seller\order\OrderController@index');
         Route::get('/penjualan/{id}/detail', 'Seller\order\OrderController@detail');
-        Route::post('/penjualan/{id}/update', 'Seller\order\OrderController@update')->name('updateOrder');
+        Route::patch('/penpenjualan/{id}/update', 'Seller\order\OrderController@update')->name('updateOrder');
 
         Route::resource('/produk', 'Seller\Produk\DataProdukController');
         Route::resource('/kategori', 'Seller\Produk\DataKategoriController');

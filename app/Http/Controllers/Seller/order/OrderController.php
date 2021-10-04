@@ -44,27 +44,8 @@ class OrderController extends Controller
         
         $this->user_detail = UserDetail::find(Auth::user()->id);
         $ud = $this->user_detail;
-        
+        $st = NULL;
         if (!empty($getdataPesan)) {
-            if ($getdataPesan->status_pembayaran == 0) {
-                $params = array(
-                    'transaction_details' => array(
-                        'order_id' => $getdataPesan->resi,
-                        'gross_amount' => $getdataPesan->total_pembayaran + $getdataPesan->ongkos_kirim,
-                    ),
-                    'customer_details' => array(
-                        'first_name' => '[Saudara/Saudari]',
-                        'last_name' => Auth::user()->name,
-                        'email' => Auth::user()->email,
-                        'phone' => $this->user_detail->no_telp,
-                    ),
-                );
-                $this->snapToken = \Midtrans\Snap::getSnapToken($params);
-                $st = $this->snapToken;
-                $status = 0;
-                
-            }elseif($getdataPesan->status_pembayaran == 1){
-                $st = $this->snapToken;
                 $status = \Midtrans\Transaction::status($getdataPesan->resi);
                 $status = json_decode(json_encode($status), true);
                 // dd($status);
@@ -80,7 +61,7 @@ class OrderController extends Controller
                     $transaction_time = $status['transaction_time'];
                     $this->dead_line = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($transaction_time)));
                 }
-            }
+            
             // dd($status);
         }
         return view('penjual.order.detail', compact('detail_produk', 'pesanan','barang', 'status', 'getdataPesan', 'ud', 'st'));
@@ -88,6 +69,7 @@ class OrderController extends Controller
     
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $update = Pesanan::findorfail($id);
         $update->status_pembayaran = $request->status_pembayaran;
         $update->update();
