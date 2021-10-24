@@ -234,7 +234,8 @@ class PesanController extends Controller
                 try {
                     $params = array(
                         'transaction_details' => array(
-                            'order_id' => $getdataPesan->resi,
+                            // 'order_id' => $getdataPesan->resi,
+                            'order_id' => $getdataPesan->id,
                             'gross_amount' => $getdataPesan->total_pembayaran + $getdataPesan->ongkos_kirim,
                         ),
                         'customer_details' => array(

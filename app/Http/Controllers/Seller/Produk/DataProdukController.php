@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Seller\Produk;
 
 use App\DataProduk;
+use App\DataSuplier;
 use App\KategoriBunga;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,7 +19,8 @@ class DataProdukController extends Controller
     {
         $produk = DataProduk::all();
         $kategori = KategoriBunga::all();
-        return view('penjual.produk.index',compact('produk','kategori'));
+        $supp = DataSuplier::all();
+        return view('penjual.produk.index',compact('produk','kategori','supp'));
     }
 
     /**
@@ -42,7 +44,7 @@ class DataProdukController extends Controller
         $produk = new DataProduk;
         $produk->nama_produk = $request->nama_produk;
         $produk->deskripsi = $request->deskripsi;
-        $produk->supplier = $request->supplier;
+        $produk->supplier_id = $request->supplier_id;
         $produk->harga_awal = $request->harga_beli;
         $produk->harga_jual = $request->harga_jual;
         $produk->stok = $request->stok;

@@ -61,7 +61,7 @@
                                         <div class="media">
                                             <div class="avatar bg-light-success mr-2">
                                                 <div class="avatar-content">
-                                                    <i data-feather="dollar-sign" class="avatar-icon"></i>
+                                                    <i data-feather="user" class="avatar-icon"></i>
                                                 </div>
                                             </div>
                                             <div class="media-body my-auto">

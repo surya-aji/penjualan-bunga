@@ -38,6 +38,6 @@
     <script src="{{asset('app-assets/js/scripts/tables/table-datatables-basic.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/forms/form-tooltip-valid.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/components/components-modals.js')}}"></script>
-    
+    <script src="{{asset('app-assets/js/scripts/forms/form-select2.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/forms/pickers/form-pickers.js')}}"></script>
     <!-- END: Page JS-->

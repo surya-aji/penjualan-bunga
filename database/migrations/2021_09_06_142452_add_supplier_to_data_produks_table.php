@@ -14,7 +14,7 @@ class AddSupplierToDataProduksTable extends Migration
     public function up()
     {
         Schema::table('data_produks', function (Blueprint $table) {
-            $table->string('supplier')->after('deskripsi')->nullable();
+            $table->integer('supplier_id')->after('deskripsi')->nullable();
         });
     }
 

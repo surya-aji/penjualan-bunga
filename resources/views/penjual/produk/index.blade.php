@@ -109,8 +109,13 @@
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="deskripsi" placeholder="Masukan Deskripsi Produk"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Supplier</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="supplier" placeholder="Masukan Data Supplier"></textarea>
+                                        <label>Supplier</label>
+                                        <select class="select2 form-control form-control-lg" name="supplier_id">
+                                            @foreach ($supp as $item)
+                                            <option value="{{$item->id}}">{{$item->nama}}</option>
+                                            @endforeach
+                                           
+                                        </select>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="form-label" for="basic-icon-default-salary">Harga Jual</label>
