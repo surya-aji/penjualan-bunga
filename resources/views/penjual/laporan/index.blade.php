@@ -1,85 +1,131 @@
 @extends('penjual.layout.master')
 @section('content')
 <div class="app-content content ">
-   <div class="content-overlay"></div>
-   <div class="header-navbar-shadow"></div>
-   <div class="content-wrapper">
-       <div class="content-header row">
-       </div>
-       <div class="content-body">
-           <section id="basic-datatable">
-               <div class="row">
-                   <div class="col-12">
-                       <div class="card">
-                           <table class="datatables-basic table">
-                               <thead>
-                                   <tr>
-                                       <th>Tanggal Pembelian</th>
-                                       <th>Gambar Produk</th>
-                                       <th>Kategori</th>
-                                       <th>Nama Produk</th>
-                                       <th>Stok</th>
-                                       <th>Harga Jual</th>
-                                       <th>Action</th>
-                                   </tr>
-                               </thead>
-                               <tbody>
-                                   <td>Lorem</td>
-                                   <td>Lorem</td>
-                                   <td>Lorem</td>
-                                   <td>Lorem</td>
-                                   <td>Lorem</td>
-                                   <td>Lorem</td>
-                                   <td>Lorem</td>
-                               </tbody>
-                           </table>
-                       </div>
-                   </div>
-               </div>
-               <!-- Modal to add new record -->
-               <div class="modal modal-slide-in fade" id="modals-slide-in">
-                   <div class="modal-dialog sidebar-sm">
-                       <form class="add-new-record modal-content pt-0">
-                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
-                           <div class="modal-header mb-1">
-                               <h5 class="modal-title" id="exampleModalLabel">New Record</h5>
-                           </div>
-                           <div class="modal-body flex-grow-1">
-                               <div class="form-group">
-                                   <label class="form-label" for="basic-icon-default-fullname">Stok</label>
-                                   <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="John Doe" aria-label="John Doe" />
-                               </div>
-                               <div class="form-group">
-                                   <label class="form-label" for="basic-icon-default-post">Gambar Produk</label>
-                                   <input type="text" id="basic-icon-default-post" class="form-control dt-post" placeholder="Web Developer" aria-label="Web Developer" />
-                               </div>
-                               <div class="form-group">
-                                   <label class="form-label" for="basic-icon-default-email">Kategori</label>
-                                   <input type="text" id="basic-icon-default-email" class="form-control dt-email" placeholder="john.doe@example.com" aria-label="john.doe@example.com" />
-                                   <small class="form-text text-muted"> You can use letters, numbers & periods </small>
-                               </div>
-                               <div class="form-group">
-                                   <label class="form-label" for="basic-icon-default-date">Tanggal Pembelian</label>
-                                   <input type="text" class="form-control dt-date" id="basic-icon-default-date" placeholder="MM/DD/YYYY" aria-label="MM/DD/YYYY" />
-                               </div>
-                               <div class="form-group mb-4">
-                                   <label class="form-label" for="basic-icon-default-salary">Harga Jual</label>
-                                   <input type="text" id="basic-icon-default-salary" class="form-control dt-salary" placeholder="$12000" aria-label="$12000" />
-                               </div>
-                               <div class="form-group mb-4">
-                                 <label class="form-label" for="basic-icon-default-salary">Harga Beli</label>
-                                 <input type="text" id="basic-icon-default-salary" class="form-control dt-salary" placeholder="$12000" aria-label="$12000" />
-                             </div>
-                               <button type="button" class="btn btn-primary data-submit mr-1">Submit</button>
-                               <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-                           </div>
-                       </form>
-                   </div>
-               </div>
-           </section>
-           <!--/ Basic table -->
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">            
+            <section id="multilingual-datatable">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <table class="dt-multilingual table">
+                                <thead>
+                                    <tr>
+                                        <th>Tanggal pembelian</th>
+                                        <th>Tanggal penjualan</th>
+                                        <th>Pembeli</th>
+                                        <th>Keuntungan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($data_pesanan as $item)
+                                    <tr>
+                                        <td>
+                                            @foreach ($detail_pesanan->where('pesanan_id',$item->id) as $i)
+                                            {{Carbon\Carbon::parse($i->barang->tanggal_pembelian)->isoFormat('dddd, D MMMM Y')}} <br>
+                                            @endforeach
+                                        </td>
 
-       </div>
-   </div>
+                                        <td>
+                                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-backdrop="false" data-target="#backdrop{{$item->id}}">
+                                                {{Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, D MMMM Y')}}
+                                            </button>
+                                           
+                                        </td>
+
+                                        <td>
+                                            {{$item->pesan->nama}}
+                                          
+                                        </td>
+
+                                        <td>
+                                            @foreach ($detail_pesanan->where('pesanan_id',$item->id) as $i)
+                                            Rp. {{($i->barang->harga_jual * $i->jumlah) - ($i->barang->harga_awal * $i->jumlah)}} <br>
+                                            @endforeach
+                                        </td>
+                                    </tr>
+
+                                      {{-- Modal --}}
+                                    <div class="modal fade text-left" id="backdrop{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="myModalLabel4">Detail Laporan</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <label class="form-label" for="basic-icon-default-post">Nama Pembeli</label>
+                                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="Nama Pembeli" aria-label="John Doe" value="{{$item->pesan->nama}}" disabled />
+
+                                                    <label class="form-label" for="basic-icon-default-post">Nomor Telepon</label>
+                                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="Nama Pembeli" aria-label="John Doe" value="{{$item->pesan->no_telp}}" disabled />
+
+
+                                                    <label class="form-label" for="basic-icon-default-post">Alamat</label>
+                                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="Nama Pembeli" aria-label="John Doe" value="{{$item->alamat_lengkap}}" disabled />
+
+                                                    <label class="form-label" for="basic-icon-default-post">Produk</label>
+                                                    @foreach ($detail_pesanan->where('pesanan_id',$item->id) as $i)
+                                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="Nama Pembeli" aria-label="John Doe" value="{{$i->barang->nama_produk }}  x  {{$i->jumlah}} 
+                                                    " disabled /> <br>
+                                                    @endforeach
+
+
+                                                    <label class="form-label" for="basic-icon-default-post">Harga Beli</label>
+                                                    @foreach ($detail_pesanan->where('pesanan_id',$item->id) as $i)
+                                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="Nama Pembeli" aria-label="John Doe" value="{{$i->barang->nama_produk }} = Rp. {{$i->barang->harga_awal }}  
+                                                    " disabled /> <br>
+                                                    @endforeach
+
+
+                                                    <label class="form-label" for="basic-icon-default-post">Total Harga Beli</label>
+                                                    @foreach ($detail_pesanan->where('pesanan_id',$item->id) as $i)
+                                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="Nama Pembeli" aria-label="John Doe" value="Rp. {{$i->barang->harga_awal * $i->jumlah}}  
+                                                    " disabled /> <br>
+                                                    @endforeach
+                                                  
+                                                    <label class="form-label" for="basic-icon-default-post">Harga Jual</label>
+                                                    @foreach ($detail_pesanan->where('pesanan_id',$item->id) as $i)
+                                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="Nama Pembeli" aria-label="John Doe" value="{{$i->barang->nama_produk }} = Rp. {{$i->barang->harga_jual }}  
+                                                    " disabled /> <br>
+                                                    @endforeach
+
+                                                    <label class="form-label" for="basic-icon-default-post">Total Harga Jual</label>
+                                                    @foreach ($detail_pesanan->where('pesanan_id',$item->id) as $i)
+                                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="Nama Pembeli" aria-label="John Doe" value="Rp. {{$i->barang->harga_jual * $i->jumlah}}  
+                                                    " disabled /> <br>
+                                                    @endforeach
+
+                                                    <label class="form-label" for="basic-icon-default-post">Keuntungan</label>
+                                                    
+                                                    @foreach ($detail_pesanan->where('pesanan_id',$item->id) as $i)
+                                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="Nama Pembeli" aria-label="John Doe" value="Rp. {{($i->barang->harga_jual * $i->jumlah) - ($i->barang->harga_awal * $i->jumlah)}}  
+                                                    " disabled /> <br>
+                                                    @endforeach
+                                                    
+                                                   
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--/ Basic table -->
+
+        </div>
+    </div>
 </div>
 @endsection

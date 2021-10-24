@@ -42,6 +42,7 @@ class DataProdukController extends Controller
         $produk = new DataProduk;
         $produk->nama_produk = $request->nama_produk;
         $produk->deskripsi = $request->deskripsi;
+        $produk->supplier = $request->supplier;
         $produk->harga_awal = $request->harga_beli;
         $produk->harga_jual = $request->harga_jual;
         $produk->stok = $request->stok;
@@ -104,6 +105,7 @@ class DataProdukController extends Controller
         $update->nama_produk = $request->nama_produk_edit;
         $update->harga_awal = $request->harga_beli_edit;
         $update->harga_jual = $request->harga_jual_edit;
+        $update->supplier = $request->supplier_edit;
         $update->stok = $request->stok_edit;
         $update->berat = $request->berat_edit;
         $update->kategori_id = $request->kategori_edit;

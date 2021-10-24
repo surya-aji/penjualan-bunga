@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    Login Kembyang Isun
+@endsection
 @section('content')
 {{-- <div class="container">
     <div class="row justify-content-center">
@@ -104,7 +106,7 @@
                                 </g>
                             </g>
                         </svg>
-                        <h2 class="brand-text text-primary ml-1">Vuexy</h2>
+                        <h2 class="brand-text text-primary ml-1">KembyangIsun</h2>
                     </a>
                     <!-- /Brand logo-->
                     <!-- Left Text-->
@@ -115,13 +117,13 @@
                     <!-- Login-->
                     <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
                         <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
-                            <h2 class="card-title font-weight-bold mb-1">Welcome to Vuexy! 👋</h2>
+                            <h2 class="card-title font-weight-bold mb-1">Welcome to Kembyang Isun! 👋</h2>
                             <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
                             <form class="auth-login-form mt-2" action="{{ route('login') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <label class="form-label" for="login-email">Email</label>
-                                    <input class="form-control" id="login-email" type="text" name="email" value="{{ old('email') }}" aria-describedby="login-email" autofocus="" tabindex="1" />
+                                    <label class="form-label" for="login-email">Username</label>
+                                    <input class="form-control" id="login-email" type="text" name="name" value="{{ old('name') }}" aria-describedby="login-email" autofocus="" tabindex="1" />
                                 </div>
                                 <div class="form-group">
                                     <div class="d-flex justify-content-between">
@@ -146,10 +148,7 @@
                                 <button class="btn btn-primary btn-block" tabindex="4">Sign in</button>
                             </form>
                             <p class="text-center mt-2"><span>New on our platform?</span><a href="{{ route('register') }}"><span>&nbsp;Create an account</span></a></p>
-                            <div class="divider my-2">
-                                <div class="divider-text">or</div>
-                            </div>
-                            <div class="auth-footer-btn d-flex justify-content-center"><a class="btn btn-facebook" href="javascript:void(0)"><i data-feather="facebook"></i></a><a class="btn btn-twitter white" href="javascript:void(0)"><i data-feather="twitter"></i></a><a class="btn btn-google" href="javascript:void(0)"><i data-feather="mail"></i></a><a class="btn btn-github" href="javascript:void(0)"><i data-feather="github"></i></a></div>
+                           
                         </div>
                     </div>
                     <!-- /Login-->

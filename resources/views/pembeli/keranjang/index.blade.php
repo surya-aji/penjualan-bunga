@@ -257,16 +257,16 @@
                             <div class="customer-card">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">John Doe</h4>
+                                        <h4 class="card-title">{{Auth::user()->detail->nama}}</h4>
                                     </div>
                                     <div class="card-body actions">
-                                        <p class="card-text mb-0">9447 Glen Eagles Drive</p>
-                                        <p class="card-text">Lewis Center, OH 43035</p>
-                                        <p class="card-text">UTC-5: Eastern Standard Time (EST)</p>
-                                        <p class="card-text">202-555-0140</p>
-                                        <button type="button" class="btn btn-primary btn-block btn-next delivery-address mt-2">
+                                        <p class="card-text mb-0">Alamat Terdaftar  :</p>
+                                        <p class="card-text">{{Auth::user()->detail->alamat_lengkap}}</p>
+                                        {{-- <p class="card-text">UTC-5: Eastern Standard Time (EST)</p> --}}
+                                        <p class="card-text">Nomor Telepon : {{Auth::user()->detail->no_telp}}</p>
+                                        {{-- <button type="button" class="btn btn-primary btn-block btn-next delivery-address mt-2">
                                             Deliver To This Address
-                                        </button>
+                                        </button> --}}
                                     </div>
                                 </div>
                             </div>

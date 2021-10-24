@@ -9,7 +9,7 @@ class KategoriBunga extends Model
 
     protected $fillable = ['jenis_kategori', 'gambar'];
     public function bunga(){
-        return $this->hasMany(DataProduk::class,'kategori_id');
+        return $this->belongsTo(DataProduk::class,'kategori_id');
     }
     
 }

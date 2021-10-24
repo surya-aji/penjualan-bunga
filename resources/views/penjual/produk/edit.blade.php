@@ -61,6 +61,13 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Supplier</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="supplier_edit"  placeholder="Masukan Data Supplier">{{$produk->supplier}}</textarea>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-12">
                                         <div class="form-group mb-4">
                                             <label class="form-label" for="basic-icon-default-salary">Harga Beli</label>
                                             <input type="text" id="basic-icon-default-salary" class="form-control dt-salary" name="harga_beli_edit"  value="{{$produk->harga_jual}}"/>

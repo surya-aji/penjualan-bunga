@@ -108,6 +108,10 @@
                                     <label for="exampleFormControlTextarea1">Deskripsi</label>
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="deskripsi" placeholder="Masukan Deskripsi Produk"></textarea>
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Supplier</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="supplier" placeholder="Masukan Data Supplier"></textarea>
+                                </div>
                                 <div class="form-group mb-4">
                                     <label class="form-label" for="basic-icon-default-salary">Harga Jual</label>
                                     <input type="number" id="basic-icon-default-salary" class="form-control dt-salary" name="harga_jual" />
