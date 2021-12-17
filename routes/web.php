@@ -47,6 +47,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('pembelian', 'Buyer\pembelian\PesanController@pembelian')->name('pembelian');
         Route::get('pembelian/{id}/detail', 'Buyer\pembelian\PesanController@pembelianDetail')->name('pembelianDetail');
         Route::post('pembelian/{id}/finish', 'midtransnController@beli')->name('pembelianfinish');
+        Route::post('pembelian/validasi/{id}', 'Buyer\Pembelian\PesanController@validasi')->name('validasi-terima');
+
     });
 
 

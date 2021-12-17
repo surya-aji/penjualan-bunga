@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <table class="datatables-basic table">
+                            <table id="suppTB" class="">
                                 <thead>
                                     <tr>
                                         <th>No</th>

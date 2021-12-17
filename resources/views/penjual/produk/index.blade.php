@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <table class="datatables-basic table">
+                            <table id="prdTB" class="">
                                 <thead>
                                     <tr>
                                         <th>Tanggal Pembelian</th>
@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="form-label" for="basic-icon-default-salary">Berat Produk</label>
-                                    <input type="number" id="basic-icon-default-salary" class="form-control dt-salary" name="berat" placeholder="Satuan Gram"/>
+                                    <input type="number" id="basic-icon-default-salary" class="form-control dt-salary" name="berat" placeholder="Satuan Kg"/>
                                 </div>
                                 <div class="form-group">
                                     <div>

@@ -21,6 +21,7 @@ class PenjualanController extends Controller
         $data_pesanan = Pesanan::findOrFail($id);
 
         $data_pesanan->resi = $request->resi;
+        $data_pesanan->status_pengiriman = 1;
         $data_pesanan->update();
         // dd($data_pesanan);
         return redirect()->back();

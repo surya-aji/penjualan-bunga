@@ -57,7 +57,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label class="form-label" for="basic-icon-default-fullname">Berat Produk</label>
-                                            <input type="number" class="form-control dt-full-name" id="basic-icon-default-fullname" name="berat_edit" placeholder="Satuan Gram" value="{{$produk->berat}}"  />
+                                            <input type="number" class="form-control dt-full-name" id="basic-icon-default-fullname" name="berat_edit" placeholder="Satuan Kg" value="{{$produk->berat}}"  />
                                         </div>
                                     </div>
                                     <div class="col-12">

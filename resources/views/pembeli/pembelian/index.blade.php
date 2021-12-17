@@ -72,7 +72,19 @@
                             @endif
                         </td>
                         <td>{{$item->resi}}</td>
-                        <td><span type="submit" class="btn btn-primary btn-sm">Diterima</span></td>
+                        <td>
+                            @if ($item->status_pengiriman == 2)
+                            <button type="button" class="btn btn-success btn-sm disabled">Pesanan Diterima</button>
+                            @elseif($item->status_pengiriman == 1)
+                            <button type="button" class="btn btn-primary btn-sm disabled">Pesanan Sedang Dikirim</button>
+                            @else
+                            <form action="{{route('validasi-terima',$item->id)}}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <button type="submit" class="btn btn-primary btn-sm">Pesanan Diterima</button>
+                            </form>
+                            @endif
+                           
+                    </td>
 
                     </tr>
                     @endforeach

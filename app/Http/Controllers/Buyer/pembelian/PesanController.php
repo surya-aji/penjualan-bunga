@@ -273,6 +273,16 @@ class PesanController extends Controller
         return view('pembeli.pembelian.detail',compact('pesanan','detail_pesanan','st','ud','getdataPesan', 'status'));
     }
 
+    public function validasi(Request $request, $id){
+        $data_pesanan = Pesanan::findOrFail($id);
+        $data_pesanan->status_pengiriman = 2;
+        // dd($data_pesanan);
+        $data_pesanan->update();
+        return back();
+
+
+    }
+
     public function pembelianFinish()
     {
         

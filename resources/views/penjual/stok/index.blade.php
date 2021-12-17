@@ -18,7 +18,7 @@
                                         <th>Nama Pembeli</th>
                                         <th>Status Pembayaran</th>
                                         <th>Resi</th>
-                                        <th>Status Dikirim</th>
+                                        <th>Status Diterima</th>
                                         
                                     </tr>
                                 </thead>
@@ -39,10 +39,12 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if ($item->status_pembayaran == 1 && $item->status_pengiriman == 1)
-                                                <button type="button" class="btn btn-success data-submit mr-1">Pesanan Dikirim</button>
-                                            @elseif($item->status_pembayaran == 0 && $item->status_pengiriman == 0)
-                                            <button type="button" class="btn btn-outline-primary data-submit mr-1 disabled">Menunggu Pembayaran</button>
+                                            @if ($item->status_pengiriman == 1)
+                                                <button type="button" class="btn btn-outline-primary data-submit mr-1 disabled">Pesanan Dalam Pengiriman</button>
+                                            @elseif($item->status_pengiriman == 0)
+                                                <button type="button" class="btn btn-outline-primary data-submit mr-1 disabled">Menunggu Pesanan Dikirim</button>
+                                            @elseif($item->status_pengiriman == 2)
+                                                 <button type="button" class="btn btn-success data-submit mr-1 ">Pesanan Telah Di Terima</button>
                                             @else
                                             <form action="{{route('validasi-kirim',$item->id)}}" method="POST" enctype="multipart/form-data">
                                                 @csrf
