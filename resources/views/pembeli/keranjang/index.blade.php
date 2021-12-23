@@ -4,34 +4,8 @@
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
     <div class="content-wrapper">
-        <div class="content-header row">
-            <div class="content-header-left col-md-9 col-12 mb-2">
-                <div class="row breadcrumbs-top">
-                    <div class="col-12">
-                        <h2 class="content-header-title float-left mb-0">Checkout</h2>
-                        <div class="breadcrumb-wrapper">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a>
-                                </li>
-                                <li class="breadcrumb-item"><a href="#">eCommerce</a>
-                                </li>
-                                <li class="breadcrumb-item active">Checkout
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
-                <div class="form-group breadcrumb-right">
-                    <div class="dropdown">
-                        <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="grid"></i></button>
-                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="app-todo.html"><i class="mr-1" data-feather="check-square"></i><span class="align-middle">Todo</span></a><a class="dropdown-item" href="app-chat.html"><i class="mr-1" data-feather="message-square"></i><span class="align-middle">Chat</span></a><a class="dropdown-item" href="app-email.html"><i class="mr-1" data-feather="mail"></i><span class="align-middle">Email</span></a><a class="dropdown-item" href="app-calendar.html"><i class="mr-1" data-feather="calendar"></i><span class="align-middle">Calendar</span></a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="content-body">
+       
+        <div class="content-body" >
             <div class="bs-stepper checkout-tab-steps">
                 <!-- Wizard starts -->
                 <div class="bs-stepper-header">
@@ -78,7 +52,7 @@
                 <!-- Wizard ends -->
                 <div class="bs-stepper-content">
                     <!-- Checkout Place order starts -->
-                    <div id="step-cart" class="content">
+                    <div id="step-cart" class="content" >
                         <div id="place-order" class="list-view product-checkout">
                             <!-- Checkout Place Order Left starts -->
                             <div class="checkout-items">
@@ -172,199 +146,196 @@
                         <!-- Checkout Place order Ends -->
                     </div>
                     <!-- Checkout Customer Address Starts -->
-                    <div id="step-address" class="content">
-                        <form id="checkout-address" method="POST" action="{{route('check-out')}}" enctype="multipart/form-data" class="list-view product-checkout">
-                            @csrf
-                            <!-- Checkout Customer Address Left starts -->
-                            <div class="card">
-                                <div class="card-header flex-column align-items-start">
-                                    <h4 class="card-title">Alamat Pengiriman</h4>
-                                    <p class="card-text text-muted mt-25">Untuk Memastikan Bahwa benar Alamat anda</p>
+                    <div id="step-address" class="content" style="padding: 5px;" >
+                        <div class="row justify-content-center" style="background: #E6E2EB">
+                            <div id="checkout-address" class="list-view product-checkout">
+                                <div>
+                                    <form  method="POST" action="{{route('check-out')}}" enctype="multipart/form-data">
+                                        @csrf
+                                        <!-- Checkout Customer Address Left starts -->
+                                        <div class="card">
+                                            <div class="card-header flex-column align-items-start">
+                                                <h4 class="card-title">Tambahkan Alamat Pengiriman</h4>
+                                                <p class="card-text text-muted mt-25">Untuk Memastikan Bahwa benar Alamat anda</p>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    {{-- <div class="col-md-6 col-sm-12">
+                                                        <label>Provinsi Asal</label>
+                                                        <select  class="select2 form-control form-control-lg" name="provinsi_asal">
+                                                            <option value="">--Provinsi--</option>
+                                                            @foreach ($provinsi as $provin => $value)    
+                                                            <option value="{{$provin}}">{{$value}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div> --}}
+                                                    <div class="col-md-6 col-sm-12">
+                                                        {{-- <div class="form-group mb-2">
+                                                            <label>Kota Asal</label>
+                                                            <select class="select2 form-control form-control-lg" name="kota_asal">
+                                                                <option value="">--Kota--</option>
+                                                                @foreach ($kota as $kotas => $value)    
+                                                                <option value="{{$kotas}}">{{$value}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div> --}}
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-12">
+                                                        {{-- <div class="form-group mb-2">
+                                                            <label>Provinsi Tujuan</label>
+                                                            <select class="select2 form-control form-control-lg" name="provinsi_tujuan">
+                                                                <option value="">--Provinsi--</option>
+                                                                @foreach ($provinsi as $provin => $value)    
+                                                                <option value="{{$provin}}">{{$value}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div> --}}
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="form-group mb-2">
+                                                            <label>Kota Anda</label>
+                                                            <select class="select2 form-control form-control-lg" name="kota_tujuan">
+                                                                <option value="">--Kota--</option>
+                                                                @foreach ($kota as $kotas => $value)    
+                                                                <option value="{{$kotas}}">{{$value}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="form-group mb-2">
+                                                            <label>Kurir</label>
+                                                            <select class="select2 form-control form-control-lg" name="kurir">
+                                                                <option value="">--Kurir--</option>
+                                                                @foreach ($kurir as $kurirs => $value)    
+                                                                <option value="{{$kurirs}}">{{$value}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <div class="form-group mb-2">
+                                                            <label for="exampleFormControlTextarea1">Detail Alamat</label>
+                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Masukan Alamat Lengkap" name="detail_alamat"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-12">
+                                                        <button type="submit" class="btn btn-primary btn-next delivery-address"> Save & Deliver Here</button>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Checkout Customer Address Left ends -->
+            
+                                       
+                                    </form>
                                 </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        {{-- <div class="col-md-6 col-sm-12">
-                                            <label>Provinsi Asal</label>
-                                            <select  class="select2 form-control form-control-lg" name="provinsi_asal">
-                                                <option value="">--Provinsi--</option>
-                                                @foreach ($provinsi as $provin => $value)    
-                                                <option value="{{$provin}}">{{$value}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div> --}}
-                                        <div class="col-md-6 col-sm-12">
-                                            {{-- <div class="form-group mb-2">
-                                                <label>Kota Asal</label>
-                                                <select class="select2 form-control form-control-lg" name="kota_asal">
-                                                    <option value="">--Kota--</option>
-                                                    @foreach ($kota as $kotas => $value)    
-                                                    <option value="{{$kotas}}">{{$value}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div> --}}
-                                        </div>
-                                        <div class="col-md-6 col-sm-12">
-                                            {{-- <div class="form-group mb-2">
-                                                <label>Provinsi Tujuan</label>
-                                                <select class="select2 form-control form-control-lg" name="provinsi_tujuan">
-                                                    <option value="">--Provinsi--</option>
-                                                    @foreach ($provinsi as $provin => $value)    
-                                                    <option value="{{$provin}}">{{$value}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div> --}}
-                                        </div>
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="form-group mb-2">
-                                                <label>Kota Anda</label>
-                                                <select class="select2 form-control form-control-lg" name="kota_tujuan">
-                                                    <option value="">--Kota--</option>
-                                                    @foreach ($kota as $kotas => $value)    
-                                                    <option value="{{$kotas}}">{{$value}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="form-group mb-2">
-                                                <label>Kurir</label>
-                                                <select class="select2 form-control form-control-lg" name="kurir">
-                                                    <option value="">--Kurir--</option>
-                                                    @foreach ($kurir as $kurirs => $value)    
-                                                    <option value="{{$kurirs}}">{{$value}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12">
-                                            <div class="form-group mb-2">
-                                                <label for="exampleFormControlTextarea1">Detail Alamat</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Masukan Alamat Lengkap" name="detail_alamat"></textarea>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-12">
-                                            <button type="submit" class="btn btn-primary btn-next delivery-address">Check Out</button>
-                                            
-                                            
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Checkout Customer Address Left ends -->
 
-                            <!-- Checkout Customer Address Right starts -->
-                            <div class="customer-card">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">{{Auth::user()->detail->nama}}</h4>
-                                    </div>
-                                    <div class="card-body actions">
-                                        <p class="card-text mb-0">Alamat Terdaftar  :</p>
-                                        <p class="card-text">{{Auth::user()->detail->alamat_lengkap}}</p>
-                                        {{-- <p class="card-text">UTC-5: Eastern Standard Time (EST)</p> --}}
-                                        <p class="card-text">Nomor Telepon : {{Auth::user()->detail->no_telp}}</p>
-                                        {{-- <button type="button" class="btn btn-primary btn-block btn-next delivery-address mt-2">
-                                            Deliver To This Address
-                                        </button> --}}
-                                    </div>
+                                <div>
+                                    @if (!empty($alamat1->kota_satu))
+                                    <form style="margin-bottom: 10px" class="checkout-options" method="POST" action="{{route('check-out')}}" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="card-title">Opsi Alamat 1</h4>
+                                            </div>
+                                            <div class="card-body actions">
+                                                <p class="card-text mb-0">Alamat Terdaftar :</p>
+                                                <select class="select2 form-control form-control-lg" disabled name="kota_tujuan">
+                                                    <option value="{{$alamat1->kota_satu}}">{{$alamat1->nama_kota}}</option>
+                                                </select>
+                                                </span>                                                            
+                                                <input style="border: none" type="text" class="form-control text-center" id="readonlyInput"  name="detail_alamat" value="{{Auth::user()->detail->alamat_pertama}}" />
+                                                <p class="card-text">Nomor Telepon : {{Auth::user()->detail->no_telp}}</p>
+                                                <div class="form-group mb-2">
+                                                    <label>Kurir</label>
+                                                    <select class="select2 form-control form-control-lg" name="kurir">
+                                                        <option value="">--Kurir--</option>
+                                                        @foreach ($kurir as $kurirs => $value)    
+                                                        <option value="{{$kurirs}}">{{$value}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary btn-block  mt-2">
+                                                    Deliver To This Address
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    @endif
+                              
+                                    @if (!empty($alamat2->kota_dua) )
+                                    <form style="margin-bottom: 10px" class="checkout-options" method="POST" action="{{route('check-out')}}" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="card-title">Opsi Alamat 2</h4>
+                                            </div>
+                                            <div class="card-body actions">
+                                                <p class="card-text mb-0">Alamat Terdaftar :</p>
+                                                <select class="select2 form-control form-control-lg" disabled name="kota_tujuan">
+                                                    <option value="{{$alamat2->kota_dua}}">{{$alamat2->nama_kota}}</option>
+                                                </select>
+                                                </span>                                                            
+                                                <input style="border: none" type="text" class="form-control text-center" id="readonlyInput"  name="detail_alamat" value="{{Auth::user()->detail->alamat_kedua}}" />
+                                                <p class="card-text">Nomor Telepon : {{Auth::user()->detail->no_telp}}</p>
+                                                <div class="form-group mb-2">
+                                                    <label>Kurir</label>
+                                                    <select class="select2 form-control form-control-lg" name="kurir">
+                                                        <option value="">--Kurir--</option>
+                                                        @foreach ($kurir as $kurirs => $value)    
+                                                        <option value="{{$kurirs}}">{{$value}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary btn-block  mt-2">
+                                                    Deliver To This Address
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    @endif
+                                    
+
+                                    @if (!empty($alamat3->kota_tiga))         
+                                    <form style="margin-bottom: 10px" class="checkout-options" method="POST" action="{{route('check-out')}}" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="card-title">Opsi Alamat 3</h4>
+                                            </div>
+                                            <div class="card-body actions">
+                                                <p class="card-text mb-0">Alamat Terdaftar :</p>
+                                                <select class="select2 form-control form-control-lg" disabled name="kota_tujuan">
+                                                    <option value="{{$alamat3->kota_tiga}}">{{$alamat3->nama_kota}}</option>
+                                                </select>
+                                                </span>                                                            
+                                                <input style="border: none" type="text" class="form-control text-center" id="readonlyInput"  name="detail_alamat" value="{{Auth::user()->detail->alamat_ketiga}}" />
+                                                <p class="card-text">Nomor Telepon : {{Auth::user()->detail->no_telp}}</p>
+                                                <div class="form-group mb-2">
+                                                    <label>Kurir</label>
+                                                    <select class="select2 form-control form-control-lg" name="kurir">
+                                                        <option value="">--Kurir--</option>
+                                                        @foreach ($kurir as $kurirs => $value)    
+                                                        <option value="{{$kurirs}}">{{$value}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary btn-block  mt-2">
+                                                    Deliver To This Address
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    @endif
+                   
+
                                 </div>
+                                
                             </div>
-                            <!-- Checkout Customer Address Right ends -->
-                        </form>
+                        </div>
                     </div>
-                    <!-- Checkout Customer Address Ends -->
-
-                    <!-- Checkout Payment Starts -->
-                    <div id="step-payment" class="content">
-                        {{-- <form id="checkout-payment" class="list-view product-checkout" onsubmit="return false;">
-                            <div class="payment-type">
-                                <div class="card">
-                                    <div class="card-header flex-column align-items-start">
-                                        <h4 class="card-title">Payment options</h4>
-                                        <p class="card-text text-muted mt-25">Be sure to click on correct payment option</p>
-                                    </div>
-                                    <div class="card-body">
-                                        <h6 class="card-holder-name my-75">John Doe</h6>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" id="customColorRadio1" name="paymentOptions" class="custom-control-input" checked />
-                                            <label class="custom-control-label" for="customColorRadio1">
-                                                US Unlocked Debit Card 12XX XXXX XXXX 0000
-                                            </label>
-                                        </div>
-                                        <div class="customer-cvv mt-1">
-                                            <div class="form-inline">
-                                                <label class="mb-50" for="card-holder-cvv">Enter CVV:</label>
-                                                <input type="password" class="form-control ml-sm-75 ml-0 mb-50 input-cvv" name="input-cvv" id="card-holder-cvv" />
-                                                <button type="button" class="btn btn-primary btn-cvv ml-0 ml-sm-1 mb-50">Continue</button>
-                                            </div>
-                                        </div>
-                                        <hr class="my-2" />
-                                        <ul class="other-payment-options list-unstyled">
-                                            <li class="py-50">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" id="customColorRadio2" name="paymentOptions" class="custom-control-input" />
-                                                    <label class="custom-control-label" for="customColorRadio2"> Credit / Debit / ATM Card </label>
-                                                </div>
-                                            </li>
-                                            <li class="py-50">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" id="customColorRadio3" name="paymentOptions" class="custom-control-input" />
-                                                    <label class="custom-control-label" for="customColorRadio3"> Net Banking </label>
-                                                </div>
-                                            </li>
-                                            <li class="py-50">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" id="customColorRadio4" name="paymentOptions" class="custom-control-input" />
-                                                    <label class="custom-control-label" for="customColorRadio4"> EMI (Easy Installment) </label>
-                                                </div>
-                                            </li>
-                                            <li class="py-50">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" id="customColorRadio5" name="paymentOptions" class="custom-control-input" />
-                                                    <label class="custom-control-label" for="customColorRadio5"> Cash On Delivery </label>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <hr class="my-2" />
-                                        <div class="gift-card mb-25">
-                                            <p class="card-text">
-                                                <i data-feather="plus-circle" class="mr-50 font-medium-5"></i>
-                                                <span class="align-middle">Add Gift Card</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="amount-payable checkout-options">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">Price Details</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <ul class="list-unstyled price-details">
-                                            <li class="price-detail">
-                                                <div class="details-title">Price of 3 items</div>
-                                                <div class="detail-amt">
-                                                    <strong>$699.30</strong>
-                                                </div>
-                                            </li>
-                                            <li class="price-detail">
-                                                <div class="details-title">Delivery Charges</div>
-                                                <div class="detail-amt discount-amt text-success">Free</div>
-                                            </li>
-                                        </ul>
-                                        <hr />
-                                        <ul class="list-unstyled price-details">
-                                            <li class="price-detail">
-                                                <div class="details-title">Amount Payable</div>
-                                                <div class="detail-amt font-weight-bolder">$699.30</div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </form> --}}
                     </div>
                     <!-- Checkout Payment Ends -->
                     <!-- </div> -->

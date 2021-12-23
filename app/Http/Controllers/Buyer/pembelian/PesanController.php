@@ -105,16 +105,21 @@ class PesanController extends Controller
         $kurir = Kurir::pluck('nama_kurir','kode');
         $provinsi = Provinsi::pluck('nama_provinsi','provinsi_id');
         $kota = Kota::pluck('nama_kota','kota_id');
+        $data_kota = Kota::all();
 
         //Ambil Data Keranjang
         $pesanan = Pesanan::where('user_id',Auth::user()->id)->where('status',0)->first();
+        $alamat1 = UserDetail::where('user_id',Auth::user()->id)->join('kotas','user_details.kota_satu','=','kotas.kota_id')->first();
+        $alamat2 = UserDetail::where('user_id',Auth::user()->id)->join('kotas','user_details.kota_dua','=','kotas.kota_id')->first();
+        $alamat3 = UserDetail::where('user_id',Auth::user()->id)->join('kotas','user_details.kota_tiga','=','kotas.kota_id')->first();
+
 
         
         if(!empty($pesanan)){
             $detail_pesanan =  PesananDetail::where('pesanan_id',$pesanan->id)->get();
-            return view('pembeli.keranjang.index',compact('detail_pesanan','pesanan','kurir','provinsi','kota'));
+            return view('pembeli.keranjang.index',compact('detail_pesanan','pesanan','kurir','provinsi','kota','alamat1','alamat2','alamat3','data_kota'));
         }else{
-            return view('pembeli.keranjang.index',compact('pesanan','kurir','provinsi','kota'));
+            return view('pembeli.keranjang.index',compact('pesanan','kurir','provinsi','kota','alamat1','alamat2','alamat3','data_kota'));
         }
        
         
@@ -125,6 +130,7 @@ class PesanController extends Controller
     { 
          
         // Ambil Data
+        $tambah_alamat= UserDetail::where('user_id',Auth::user()->id)->first();
         $pesanan = Pesanan::where('user_id',Auth::user()->id)->where('status',0)->first();
         $detail_pesanan = PesananDetail::where('pesanan_id',$pesanan->id)->sum('jumlah_berat');
         $detail = PesananDetail::where('pesanan_id',$pesanan->id)->first();
@@ -147,6 +153,7 @@ class PesanController extends Controller
         // $pesanan->resi = mt_rand(100000, 999999);
         $pesanan->status = 1;
         $pesanan->ongkos_kirim = $biaya['value'];
+        
 
         // $pesanan->kurir =  $kurir;
         // $pesanan->layanan =  $layanan;
@@ -157,16 +164,37 @@ class PesanController extends Controller
         // }
         // $pesanan->update();
 
+        if($tambah_alamat->alamat_pertama != null){
+            if($tambah_alamat->alamat_kedua != null){
+                if($tambah_alamat->alamat_ketiga != null){
+                }else{
+                    $tambah_alamat->alamat_ketiga = $request->detail_alamat;
+                    $tambah_alamat->kota_tiga = $request->kota_tujuan;
+                }
+            }else{
+                $tambah_alamat->alamat_kedua = $request->detail_alamat;
+                $tambah_alamat->kota_dua = $request->kota_tujuan;
+            }
+        }else{
+            $tambah_alamat->alamat_pertama = $request->detail_alamat;
+            $tambah_alamat->kota_satu = $request->kota_tujuan;
+        }
+        
         $pesanan->alamat_lengkap = $request->detail_alamat;
+
         $pesanan->kurir = $kurir;
         $pesanan->layanan = $layanan;
         
 
         $barang->stok = $barang->stok - $detail->jumlah ; // pengurangan stok ketika sudah check out
         
+        // $tambah_alamat->alamat_pertama = $request->detail_alamat;
+        // $tambah_alamat->kota_satu = $request->kota_tujuan;
+        $tambah_alamat->update();
+        $detail->update();
         $pesanan->update();
         $barang->update();
-
+       
         return redirect('buyer/pembelian');
 
     }

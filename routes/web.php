@@ -42,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/hapus-keranjang/{id}', 'Buyer\pembelian\PesanController@hapusKeranjang')->name('hapus-keranjang');
         Route::get('/keranjang', 'Buyer\pembelian\PesanController@keranjang');
         Route::post('/keranjang', 'Buyer\pembelian\PesanController@check_ongkir')->name('check-out');
+        
         // Route::get('/keranjang', 'Buyer\pembelian\PesanController@check_ongkir')->name('check-out');
         Route::get('keranjang/{id}', 'Buyer\pembelian\PesanController@getCities')->name('get-kota');
         Route::get('pembelian', 'Buyer\pembelian\PesanController@pembelian')->name('pembelian');
