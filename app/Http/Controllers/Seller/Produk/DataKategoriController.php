@@ -17,6 +17,7 @@ class DataKategoriController extends Controller
     {
         $kategori = KategoriBunga::all();
         return view('penjual.kategori.index',compact('kategori'));
+        return response()->json( $kategori );
     }
 
     /**

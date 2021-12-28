@@ -102,7 +102,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label class="form-label" for="login-email">Username</label>
-                                    <input class="form-control" id="login-email" type="text" name="name" value="{{ old('name') }}" aria-describedby="login-email" autofocus="" tabindex="1" />
+                                    <input class="form-control" id="login-email" type="text" name="name" value="{{ old('name') }}" aria-describedby="login-email" autofocus="" tabindex="1"  required/>
                                 </div>
                                 <div class="form-group">
                                     <div class="d-flex justify-content-between">

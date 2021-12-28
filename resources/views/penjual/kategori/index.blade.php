@@ -16,7 +16,9 @@
                                     <tr>
                                         <th>Jenis Kategori</th>
                                         <th>Gambar</th>
+                                        <th>Gambar</th>
                                         <th>Action</th>
+                                        
                                     </tr>
                                 </thead>
                               
@@ -30,9 +32,11 @@
                                                 @method('delete')
                                                 @csrf
                                                 <button class="btn btn-danger btn-icon">
-                                                  <i data-feather="trash">a</i>
+                                                  <i data-feather="trash"></i>
                                                 </button>
-                                              </form></td>  
+                                              </form>
+                                            </td>  
+                                            
                                         </tr>
                                         @endforeach
                                 </tbody>
@@ -56,7 +60,7 @@
                                         <div class="form-group">
                                             <label for="customFile">Gambar</label>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile" name="gambar_kategori" required accept=".jpg, .png"/>
+                                                <input type="file" class="custom-file-input" id="customFile" name="gambar_kategori" required accept=".jpg, .png" required/>
                                                 <label class="custom-file-label" for="customFile">Choose file</label>
                                             </div>
                                         </div>
@@ -64,7 +68,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="basic-icon-default-fullname">Jenis Kategori</label>
-                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" name="jenis_kategori" />
+                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" name="jenis_kategori" required />
                                 </div>
                                 <button type="submit" class="btn btn-primary data-submit mr-1">Submit</button>
                                 <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>

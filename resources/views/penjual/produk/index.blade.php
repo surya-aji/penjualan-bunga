@@ -70,7 +70,7 @@
                                         <div class="form-group">
                                             <label for="customFile">Gambar</label>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile" name="gambar_produk" required accept=".jpg, .png"/>
+                                                <input type="file" class="custom-file-input" id="customFile" name="gambar_produk" required accept=".jpg, .png" required/>
                                                 <label class="custom-file-label" for="customFile">Choose file</label>
                                             </div>
                                         </div>
@@ -78,12 +78,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="basic-icon-default-fullname">Nama</label>
-                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" name="nama_produk" />
+                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" name="nama_produk" required />
                                 </div>
                                 <div class="form-group">
                                     <div>
                                         <label>Kategori</label>
-                                        <select class="select2 form-control form-control-lg" name="kategori">
+                                        <select class="select2 form-control form-control-lg" name="kategori" required>
                                             @foreach ($kategori as $item)
                                             <option value="{{$item->id}}">{{$item->jenis_kategori}}</option>
                                             @endforeach
@@ -92,21 +92,21 @@
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="form-label" for="basic-icon-default-salary">Berat Produk</label>
-                                    <input type="number" id="basic-icon-default-salary" class="form-control dt-salary" name="berat" placeholder="Satuan Kg"/>
+                                    <input type="number" id="basic-icon-default-salary" class="form-control dt-salary" name="berat" placeholder="Satuan Kg" required/>
                                 </div>
                                 <div class="form-group">
                                     <div>
                                         <label for="fp-default">Tanggal</label>
-                                        <input type="text" id="fp-default" name="tanggal_beli" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" />
+                                        <input type="text" id="fp-default" name="tanggal_beli" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" required/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="basic-icon-default-fullname">Stok</label>
-                                    <input type="number" class="form-control dt-full-name" id="basic-icon-default-fullname" name="stok" placeholder="Kuantitas"  />
+                                    <input type="number" class="form-control dt-full-name" id="basic-icon-default-fullname" name="stok" placeholder="Kuantitas" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Deskripsi</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="deskripsi" placeholder="Masukan Deskripsi Produk"></textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="deskripsi" placeholder="Masukan Deskripsi Produk" required></textarea>
                                 </div>
                                 <div class="form-group">
                                         <label>Supplier</label>
@@ -114,16 +114,15 @@
                                             @foreach ($supp as $item)
                                             <option value="{{$item->id}}">{{$item->nama}}</option>
                                             @endforeach
-                                           
                                         </select>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="form-label" for="basic-icon-default-salary">Harga Jual</label>
-                                    <input type="number" id="basic-icon-default-salary" class="form-control dt-salary" name="harga_jual" />
+                                    <input type="number" id="basic-icon-default-salary" class="form-control dt-salary" name="harga_jual" required/>
                                 </div>
                                 <div class="form-group mb-4">
                                   <label class="form-label" for="basic-icon-default-salary">Harga Beli</label>
-                                  <input type="number" id="basic-icon-default-salary" class="form-control dt-salary" name="harga_beli" />
+                                  <input type="number" id="basic-icon-default-salary" class="form-control dt-salary" name="harga_beli" required />
                               </div>
                                 <button type="submit" class="btn btn-primary data-submit mr-1">Submit</button>
                                 <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>

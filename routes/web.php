@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard','DashboardController@index');
         Route::get('/kategori/{id}','Buyer\Index\IndexController@index')->name('halaman-kategori');
         Route::get('/kategori/produk/cari','Buyer\Index\IndexController@cariProduk')->name('cari-produk');
+        Route::get('/dashboard/cari','Buyer\Index\IndexController@cariProduk')->name('cari-kategori');
         Route::get('/pesan/{id}','Buyer\pembelian\PesanController@index')->name('pesan');
         Route::post('/ambil-pesan/{id}','Buyer\pembelian\PesanController@pesan')->name('masukan-keranjang');
 

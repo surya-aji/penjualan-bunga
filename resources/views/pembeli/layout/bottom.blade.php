@@ -28,8 +28,10 @@
     <script src="{{asset('app-assets/js/scripts/pages/app-ecommerce-details.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/forms/form-number-input.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/extensions/ext-component-sweet-alerts.js')}}"></script>
-    <script src="{{asset('app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
+    {{-- <script src="{{asset('app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script> --}}
     <script src="{{asset('app-assets/js/scripts/forms/form-select2.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/extensions/polyfill.min.js')}}"></script>
     <!-- END: Page JS-->
 
+
+    

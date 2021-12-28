@@ -104,7 +104,7 @@ Register Kembyang Isun
                                @csrf 
                                <div class="form-group">
                                     <label class="form-label" for="register-username">Username</label>
-                                    <input class="form-control" id="register-username" type="text" name="name" placeholder="Masukan Username" value="{{ old('name') }}" aria-describedby="register-username" autofocus="" tabindex="1" />
+                                    <input class="form-control" id="register-username" type="text" name="name" placeholder="Masukan Username" value="{{ old('name') }}" aria-describedby="register-username" autofocus="" tabindex="1" required />
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -114,7 +114,7 @@ Register Kembyang Isun
 
                                 <div class="form-group">
                                     <label class="form-label" for="register-username">Nama Lengkap</label>
-                                    <input class="form-control" id="register-username" type="text" name="namalengkap_user" placeholder="Masukan Nama Lengkap"  aria-describedby="register-username" autofocus="" tabindex="1" />
+                                    <input class="form-control" id="register-username" type="text" name="namalengkap_user" placeholder="Masukan Nama Lengkap"  aria-describedby="register-username" autofocus="" tabindex="1" required/>
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -123,7 +123,7 @@ Register Kembyang Isun
 
                                 <div class="form-group">
                                     <label class="form-label" for="register-username">Nomor Telepon</label>
-                                    <input class="form-control" id="register-username" type="text" name="nohp_user" placeholder="Masukan Nomor Telepon Aktif" value="{{ old('name') }}" aria-describedby="register-username" autofocus="" tabindex="1" />
+                                    <input class="form-control" id="register-username" type="text" name="nohp_user" placeholder="Masukan Nomor Telepon Aktif" value="{{ old('name') }}" aria-describedby="register-username" autofocus="" tabindex="1" required />
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -132,9 +132,9 @@ Register Kembyang Isun
 
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Alamat Lengkap</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="alamat_user" placeholder="Masukan Alamat Lengkap"></textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="alamat_user" placeholder="Masukan Alamat Lengkap" required></textarea>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label class="form-label" for="register-email">Email</label>
                                     <input class="form-control" id="register-email" type="text" name="email" placeholder="Email" value="{{ old('email') }}" aria-describedby="register-email" tabindex="2" />
                                     @error('email')
@@ -142,18 +142,18 @@ Register Kembyang Isun
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label class="form-label" for="register-password">Password</label>
                                     <div class="input-group input-group-merge form-password-toggle">
-                                        <input class="form-control form-control-merge" id="register-password" type="password" name="password" placeholder="············" aria-describedby="register-password" tabindex="3" />
+                                        <input class="form-control form-control-merge" id="register-password" type="password" name="password" placeholder="············" aria-describedby="register-password" tabindex="3" required />
                                         <div class="input-group-append"><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="confirm-password">Konfirmasi Password</label>
                                     <div class="input-group input-group-merge form-password-toggle">
-                                        <input class="form-control form-control-merge" id="confirm-password" type="password" name="password_confirmation" placeholder="············" aria-describedby="register-password" tabindex="4" />
+                                        <input class="form-control form-control-merge" id="confirm-password" type="password" name="password_confirmation" placeholder="············" aria-describedby="register-password" tabindex="4" required />
                                         <div class="input-group-append"><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span></div>
                                     </div>
                                 </div>

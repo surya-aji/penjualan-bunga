@@ -27,6 +27,7 @@ $(function () {
 
   var success = $('#type-success');
   var keranjang = $('#keranjang');
+  var gagal = $('#gagal');
   var error = $('#type-error');
   var warning = $('#type-warning');
   var info = $('#type-info');
@@ -292,6 +293,21 @@ $(function () {
         title: 'Berhasil',
         text: 'Telah Memasukan Ke Keranjang',
         icon: 'success',
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false
+      });
+    });
+  }
+
+   // gagal
+   if (gagal.length) {
+    error.on('click', function () {
+      Swal.fire({
+        title: 'Error!',
+        text: ' Pemesanan gagal',
+        icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'
         },

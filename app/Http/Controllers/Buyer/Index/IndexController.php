@@ -27,4 +27,15 @@ class IndexController extends Controller
     		// mengirim data produk ke view index
             return view('pembeli.kategori.index',compact('produk'));
     }
+    public function cariKategori(Request $request){
+        $cari = $request->cari;
+ 
+    		// mengambil data dari table produk sesuai pencarian data
+        $produk = DB::table('kategori_bungas')
+		->where('jenis_kategori','like',"%".$cari."%")
+		->paginate();
+ 
+    		// mengirim data produk ke view index
+            return view('pembeli.kategori.index',compact('kategori'));
+    }
 }

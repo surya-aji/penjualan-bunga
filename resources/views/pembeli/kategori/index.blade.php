@@ -73,15 +73,7 @@
                         </div>
                         <div class="card-body">
                             <div class="item-wrapper">
-                                {{-- <div class="item-rating">
-                                    <ul class="unstyled-list list-inline">
-                                        <li class="ratings-list-item"><i data-feather="star" class="filled-star"></i></li>
-                                        <li class="ratings-list-item"><i data-feather="star" class="filled-star"></i></li>
-                                        <li class="ratings-list-item"><i data-feather="star" class="filled-star"></i></li>
-                                        <li class="ratings-list-item"><i data-feather="star" class="filled-star"></i></li>
-                                        <li class="ratings-list-item"><i data-feather="star" class="unfilled-star"></i></li>
-                                    </ul>
-                                </div> --}}
+                              
                                 <div>
                                     <h6 class="item-price">Rp.{{$item->harga_jual}}</h6>
                                 </div>
@@ -109,25 +101,7 @@
                 <!-- E-commerce Products Ends -->
 
                 <!-- E-commerce Pagination Starts -->
-                <section id="ecommerce-pagination">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center mt-2">
-                                    <li class="page-item prev-item"><a class="page-link" href="javascript:void(0);"></a></li>
-                                    <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                                    <li class="page-item" aria-current="page"><a class="page-link" href="javascript:void(0);">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0);">5</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0);">6</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0);">7</a></li>
-                                    <li class="page-item next-item"><a class="page-link" href="javascript:void(0);"></a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </section>
+              
                 <!-- E-commerce Pagination Ends -->
 
             </div>

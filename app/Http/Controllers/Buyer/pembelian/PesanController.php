@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Auth;
 use Kavist\RajaOngkir\Facades\RajaOngkir;
 use Midtrans\Transaction;
 use Midtrans\ApiRequestor;
+use RealRashid\SweetAlert\Facades\Alert;
 use Throwable;
 
 class PesanController extends Controller
@@ -42,8 +43,10 @@ class PesanController extends Controller
 
         // Validasi Stok
         if($request->jumlah > $barang->stok){
-            return redirect('buyer/pesan/'.$id)->with('stok','Sesuaikan dengan stok yang tersedia');
+            Alert::error('Pemesanan gagal', 'Sesuaikan Dengan stok yang ada');
+            return redirect('buyer/pesan/'.$id)->with('stok', 'Sesuaikan Dengan stok yang ada');
         }
+        Alert::success('Berhasil', '');
 
 
         // Validasi jika Pemesanan Belum Dibuat maka lakukan ini
@@ -135,9 +138,8 @@ class PesanController extends Controller
         $detail_pesanan = PesananDetail::where('pesanan_id',$pesanan->id)->sum('jumlah_berat');
         $detail = PesananDetail::where('pesanan_id',$pesanan->id)->first();
         $barang =  DataProduk::where('id',$detail->barang_id)->first();
-        // dd($getdataPesan);
-        // die();
-
+        
+        $test =  PesananDetail::where('pesanan_id',$pesanan->id)->get();
 
         $cost = RajaOngkir::ongkosKirim([
             'origin'        => 42,     // ID kota/kabupaten banyuwangi
@@ -145,25 +147,25 @@ class PesanController extends Controller
             'weight'        => $detail_pesanan,    // berat barang dalam gram
             'courier'       => $request->kurir    // kode kurir pengiriman: ['jne', 'tiki', 'pos'] untuk starter
         ])->get();
-
+        
+        
         $biaya = $cost[0]['costs'][0]['cost'][0]; // ambil data biaya ongkir
         $kurir = $cost[0]['name']; //ambil data nama kurir
         $layanan = $cost[0]['costs'][0]['service']; // ambil data layanan yang dipakai
         
-        // $pesanan->resi = mt_rand(100000, 999999);
+      
+        // alert()->html('Konfirmasi Pesanan','<div class = text-left>'.
+        //                 'Total Harga Pesanan : '.'Rp.' . $pesanan->total_pembayaran .'<br/>' . 
+        //                 'Ongkir : '.'Rp.' . $cek_ongkir .'<br/>' .
+        //                 'Layanan yang Digunakan : ' . $layanan . '<br/>' . '<hr>'.'</div>' )
+        //     ->focusConfirm(true)
+        //     ->showConfirmButton('Confirm', '#3085d6')
+        //     ->showCancelButton($btnText = 'Cancel', $btnColor = '#aaa');
+
+        
         $pesanan->status = 1;
         $pesanan->ongkos_kirim = $biaya['value'];
         
-
-        // $pesanan->kurir =  $kurir;
-        // $pesanan->layanan =  $layanan;
-        // if(!empty($request->detail_alamat)){
-        //     $pesanan->alamat_lengkap = $request->detail_alamat;
-        // }else{
-        //     $pesanan->alamat_lengkap = Auth::user()->detail->alamat_lengkap;
-        // }
-        // $pesanan->update();
-
         if($tambah_alamat->alamat_pertama != null){
             if($tambah_alamat->alamat_kedua != null){
                 if($tambah_alamat->alamat_ketiga != null){
@@ -188,8 +190,6 @@ class PesanController extends Controller
 
         $barang->stok = $barang->stok - $detail->jumlah ; // pengurangan stok ketika sudah check out
         
-        // $tambah_alamat->alamat_pertama = $request->detail_alamat;
-        // $tambah_alamat->kota_satu = $request->kota_tujuan;
         $tambah_alamat->update();
         $detail->update();
         $pesanan->update();
@@ -231,7 +231,7 @@ class PesanController extends Controller
 
 
         return view('pembeli.pembelian.index',compact('pesanan','detail_pesanan'));
-// >>>>>>> origin/midtrand
+
     }
 
     public function pembelianDetail($id)

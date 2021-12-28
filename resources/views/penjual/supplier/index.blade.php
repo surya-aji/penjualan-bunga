@@ -56,15 +56,15 @@
                             <div class="modal-body flex-grow-1">
                                 <div class="form-group">
                                     <label class="form-label" for="basic-icon-default-fullname">Nama Lengkap</label>
-                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" name="nama_supp" placeholder="Masukan Nama" aria-label="John Doe" />
+                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" name="nama_supp" placeholder="Masukan Nama" aria-label="John Doe" required />
                                 </div>
                                       <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Alamat</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" name="alamat_supp" rows="3" placeholder="Masukan Alamat Lengkap"></textarea>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" name="alamat_supp" rows="3" placeholder="Masukan Alamat Lengkap" required></textarea>
                                       </div>
                                 <div class="form-group">
                                     <label class="form-label" for="basic-icon-default-email">No Hp</label>
-                                    <input type="number" id="basic-icon-default-email" class="form-control dt-email" name="nohp_supp" placeholder="Nomor HP Aktif" />
+                                    <input type="number" id="basic-icon-default-email" class="form-control dt-email" name="nohp_supp" placeholder="Nomor HP Aktif" required />
                                 </div>
                                 <button type="submit" class="btn btn-primary data-submit mr-1">Submit</button>
                                 <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>

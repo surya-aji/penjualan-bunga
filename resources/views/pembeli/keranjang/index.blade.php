@@ -146,6 +146,7 @@
                         <!-- Checkout Place order Ends -->
                     </div>
                     <!-- Checkout Customer Address Starts -->
+                    @if (!empty($pesanan))       
                     <div id="step-address" class="content" style="padding: 5px;" >
                         <div class="row justify-content-center" style="background: #E6E2EB">
                             <div id="checkout-address" class="list-view product-checkout">
@@ -242,8 +243,8 @@
                                             </div>
                                             <div class="card-body actions">
                                                 <p class="card-text mb-0">Alamat Terdaftar :</p>
-                                                <select class="select2 form-control form-control-lg" disabled name="kota_tujuan">
-                                                    <option value="{{$alamat1->kota_satu}}">{{$alamat1->nama_kota}}</option>
+                                                <select class="select2 form-control form-control-lg"  name="kota_tujuan">
+                                                    <option selected value="{{$alamat1->kota_satu}}">{{$alamat1->nama_kota}}</option>
                                                 </select>
                                                 </span>                                                            
                                                 <input style="border: none" type="text" class="form-control text-center" id="readonlyInput"  name="detail_alamat" value="{{Auth::user()->detail->alamat_pertama}}" />
@@ -274,7 +275,7 @@
                                             </div>
                                             <div class="card-body actions">
                                                 <p class="card-text mb-0">Alamat Terdaftar :</p>
-                                                <select class="select2 form-control form-control-lg" disabled name="kota_tujuan">
+                                                <select class="select2 form-control form-control-lg"  name="kota_tujuan">
                                                     <option value="{{$alamat2->kota_dua}}">{{$alamat2->nama_kota}}</option>
                                                 </select>
                                                 </span>                                                            
@@ -337,6 +338,7 @@
                         </div>
                     </div>
                     </div>
+                    @endif
                     <!-- Checkout Payment Ends -->
                     <!-- </div> -->
                 </div>

@@ -3,11 +3,14 @@
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
 @include('pembeli.layout.top')
+
+
 <!-- END: Head-->
 
 <!-- BEGIN: Body-->
 
 <body class="horizontal-layout horizontal-menu  navbar-floating footer-static  " data-open="hover" data-menu="horizontal-menu" data-col="">
+    @include('sweetalert::alert')
 
     <!-- BEGIN: Header-->
     @include('pembeli.layout.header')

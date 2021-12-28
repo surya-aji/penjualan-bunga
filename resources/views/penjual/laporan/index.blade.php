@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <table class="dt-multilingual table">
+                            <table class="" id="lpTB">
                                 <thead>
                                     <tr>
                                         <th>Tanggal pembelian</th>

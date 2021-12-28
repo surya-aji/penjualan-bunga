@@ -7,29 +7,23 @@
         <div class="">
             <div class="content-body">
                 <!-- E-commerce Content Section Starts -->
-                <section id="ecommerce-header">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="ecommerce-header-items">
-                                <div class="result-toggler">
-                                    <button class="navbar-toggler shop-sidebar-toggler" type="button" data-toggle="collapse">
-                                        <span class="navbar-toggler-icon d-block d-lg-none"><i data-feather="menu"></i></span>
-                                    </button>
-                                </div>
-                                <div class="view-options d-flex">
-                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                        <label class="btn btn-icon btn-outline-primary view-btn grid-view-btn">
-                                            <input type="radio" name="radio_options" id="radio_option1" checked />
-                                            <i data-feather="grid" class="font-medium-3"></i>
-                                        </label>
-                                        <label class="btn btn-icon btn-outline-primary view-btn list-view-btn">
-                                            <input type="radio" name="radio_options" id="radio_option2" />
-                                            <i data-feather="list" class="font-medium-3"></i>
-                                        </label>
-                                    </div>
+                <section id="ecommerce-searchbar" class="ecommerce-searchbar">
+                    <div>
+                        <form  class="row mt-1" action="{{route('cari-kategori',)}}" method="GET">
+                            @csrf
+                            <div class="col-sm-11">
+                                <div class="input-group input-group-merge">
+                                    <input type="text" class="form-control search-product" name="cari" id="shop-search" placeholder="Cari Produk" aria-label="Search..." aria-describedby="shop-search" />
                                 </div>
                             </div>
-                        </div>
+                            <div class="col-sm-1">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                    {{-- <i data-feather="search"></i> --}}
+                                    Cari
+                                </button>
+                            </div>
+                        </form>
+                      
                     </div>
                 </section>
                 <!-- E-commerce Content Section Starts -->
@@ -39,18 +33,6 @@
                 <!-- background Overlay when sidebar is shown  ends-->
 
                 <!-- E-commerce Search Bar Starts -->
-                <section id="ecommerce-searchbar" class="ecommerce-searchbar">
-                    <div class="row mt-1">
-                        <div class="col-sm-12">
-                            <div class="input-group input-group-merge">
-                                <input type="text" class="form-control search-product" id="shop-search" placeholder="Search Product" aria-label="Search..." aria-describedby="shop-search" />
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i data-feather="search" class="text-muted"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
                 <!-- E-commerce Search Bar Ends -->
 
                 <!-- E-commerce Products Starts -->
@@ -480,25 +462,7 @@
                 <!-- E-commerce Products Ends -->
 
                 <!-- E-commerce Pagination Starts -->
-                <section id="ecommerce-pagination">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center mt-2">
-                                    <li class="page-item prev-item"><a class="page-link" href="javascript:void(0);"></a></li>
-                                    <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                                    <li class="page-item" aria-current="page"><a class="page-link" href="javascript:void(0);">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0);">5</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0);">6</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0);">7</a></li>
-                                    <li class="page-item next-item"><a class="page-link" href="javascript:void(0);"></a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </section>
+               
                 <!-- E-commerce Pagination Ends -->
 
             </div>
