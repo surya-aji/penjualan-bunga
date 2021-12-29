@@ -1,0 +1,4 @@
+<footer class="footer footer-static footer-light">
+    <p class="clearfix mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2021<a class="ml-25" href="https://instagram.com/kembyangisun.id?utm_medium=copy_link" target="_blank">Kembyang Isun</a><i data-feather="instagram"></i><span class="d-none d-sm-inline-block"></span></span><span class="float-md-right d-none d-md-block">Hubungi<i data-feather="phone"></i> <a class="ml-25" href="https://wa.me/6282213039596" target="_blank">082213039596 (WA only)</a></span></p>
+</footer>
+<button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>

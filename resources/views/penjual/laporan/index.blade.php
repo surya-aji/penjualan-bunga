@@ -17,6 +17,7 @@
                                         <th>Tanggal pembelian</th>
                                         <th>Tanggal penjualan</th>
                                         <th>Pembeli</th>
+                                        <th>Pembeli</th>
                                         <th>Keuntungan</th>
                                     </tr>
                                 </thead>

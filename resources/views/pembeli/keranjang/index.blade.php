@@ -222,7 +222,7 @@
                                                     </div>
                                                     
                                                     <div class="col-12">
-                                                        <button type="submit" class="btn btn-primary btn-next delivery-address"> Save & Deliver Here</button>
+                                                        <button type="submit" class="btn btn-primary btn-next delivery-address"> Simpan dan Kirim ke sini</button>
                                                         </div>
                                                 </div>
                                             </div>
@@ -259,7 +259,7 @@
                                                     </select>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary btn-block  mt-2">
-                                                    Deliver To This Address
+                                                    Kirim ke sini
                                                 </button>
                                             </div>
                                         </div>
@@ -291,7 +291,7 @@
                                                     </select>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary btn-block  mt-2">
-                                                    Deliver To This Address
+                                                    Kirim ke sini
                                                 </button>
                                             </div>
                                         </div>
@@ -324,7 +324,7 @@
                                                     </select>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary btn-block  mt-2">
-                                                    Deliver To This Address
+                                                    Kirim ke sini
                                                 </button>
                                             </div>
                                         </div>
@@ -333,7 +333,6 @@
                    
 
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
