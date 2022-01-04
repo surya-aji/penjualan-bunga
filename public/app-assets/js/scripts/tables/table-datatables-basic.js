@@ -437,50 +437,6 @@ $(function () {
       lengthMenu: [7, 10, 25, 50, 75, 100],
       buttons: [
         {
-          extend: 'collection',
-          className: 'btn btn-outline-secondary dropdown-toggle mr-2',
-          text: feather.icons['share'].toSvg({ class: 'font-small-4 mr-50' }) + 'Export',
-          buttons: [
-            {
-              extend: 'print',
-              text: feather.icons['printer'].toSvg({ class: 'font-small-4 mr-50' }) + 'Print',
-              className: 'dropdown-item',
-              exportOptions: { columns: [3, 4, 5, 6, 7] }
-            },
-            {
-              extend: 'csv',
-              text: feather.icons['file-text'].toSvg({ class: 'font-small-4 mr-50' }) + 'Csv',
-              className: 'dropdown-item',
-              exportOptions: { columns: [3, 4, 5, 6, 7] }
-            },
-            {
-              extend: 'excel',
-              text: feather.icons['file'].toSvg({ class: 'font-small-4 mr-50' }) + 'Excel',
-              className: 'dropdown-item',
-              exportOptions: { columns: [3, 4, 5, 6, 7] }
-            },
-            {
-              extend: 'pdf',
-              text: feather.icons['clipboard'].toSvg({ class: 'font-small-4 mr-50' }) + 'Pdf',
-              className: 'dropdown-item',
-              exportOptions: { columns: [3, 4, 5, 6, 7] }
-            },
-            {
-              extend: 'copy',
-              text: feather.icons['copy'].toSvg({ class: 'font-small-4 mr-50' }) + 'Copy',
-              className: 'dropdown-item',
-              exportOptions: { columns: [3, 4, 5, 6, 7] }
-            }
-          ],
-          init: function (api, node, config) {
-            $(node).removeClass('btn-secondary');
-            $(node).parent().removeClass('btn-group');
-            setTimeout(function () {
-              $(node).closest('.dt-buttons').removeClass('btn-group').addClass('d-inline-flex');
-            }, 50);
-          }
-        },
-        {
           text: feather.icons['plus'].toSvg({ class: 'mr-50 font-small-4' }) + 'Tambah Supplier',
           className: 'create-new btn btn-primary',
           attr: {
@@ -1244,18 +1200,18 @@ $(function () {
               $(node).closest('.dt-buttons').removeClass('btn-group').addClass('d-inline-flex');
             }, 50);
           }
-        },
-        {
-          text: feather.icons['plus'].toSvg({ class: 'mr-50 font-small-4' }) + 'Tambah Supplier',
-          className: 'create-new btn btn-primary',
-          attr: {
-            'data-toggle': 'modal',
-            'data-target': '#modals-slide-in'
-          },
-          init: function (api, node, config) {
-            $(node).removeClass('btn-secondary');
-          }
         }
+        // {
+        //   text: feather.icons['plus'].toSvg({ class: 'mr-50 font-small-4' }) + 'Tambah Supplier',
+        //   className: 'create-new btn btn-primary',
+        //   attr: {
+        //     'data-toggle': 'modal',
+        //     'data-target': '#modals-slide-in'
+        //   },
+        //   init: function (api, node, config) {
+        //     $(node).removeClass('btn-secondary');
+        //   }
+        // }
       ],
       responsive: {
         details: {
