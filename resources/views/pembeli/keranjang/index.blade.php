@@ -195,7 +195,7 @@
                                                     <div class="col-md-6 col-sm-12">
                                                         <div class="form-group mb-2">
                                                             <label>Kota Anda</label>
-                                                            <select class="select2 form-control form-control-lg" name="kota_tujuan">
+                                                            <select class="select2 form-control form-control-lg" name="kota_tujuan"  required=''>
                                                                 <option value="">--Kota--</option>
                                                                 @foreach ($kota as $kotas => $value)    
                                                                 <option value="{{$kotas}}">{{$value}}</option>
@@ -206,7 +206,7 @@
                                                     <div class="col-md-6 col-sm-12">
                                                         <div class="form-group mb-2">
                                                             <label>Kurir</label>
-                                                            <select class="select2 form-control form-control-lg" name="kurir">
+                                                            <select class="select2 form-control form-control-lg" name="kurir" required=''>
                                                                 <option value="">--Kurir--</option>
                                                                 @foreach ($kurir as $kurirs => $value)    
                                                                 <option value="{{$kurirs}}">{{$value}}</option>
@@ -217,7 +217,7 @@
                                                     <div class="col-md-12 col-sm-12">
                                                         <div class="form-group mb-2">
                                                             <label for="exampleFormControlTextarea1">Detail Alamat</label>
-                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Masukan Alamat Lengkap" name="detail_alamat"></textarea>
+                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Masukan Alamat Lengkap" name="detail_alamat" required></textarea>
                                                         </div>
                                                     </div>
                                                     
@@ -243,7 +243,7 @@
                                             </div>
                                             <div class="card-body actions">
                                                 <p class="card-text mb-0">Alamat Terdaftar :</p>
-                                                <select class="select2 form-control form-control-lg"  name="kota_tujuan">
+                                                <select class="select2 form-control form-control-lg"  name="kota_tujuan"  required=''>
                                                     <option selected value="{{$alamat1->kota_satu}}">{{$alamat1->nama_kota}}</option>
                                                 </select>
                                                 </span>                                                            
@@ -251,7 +251,7 @@
                                                 <p class="card-text">Nomor Telepon : {{Auth::user()->detail->no_telp}}</p>
                                                 <div class="form-group mb-2">
                                                     <label>Kurir</label>
-                                                    <select class="select2 form-control form-control-lg" name="kurir">
+                                                    <select class="select2 form-control form-control-lg" name="kurir"  required=''>
                                                         <option value="">--Kurir--</option>
                                                         @foreach ($kurir as $kurirs => $value)    
                                                         <option value="{{$kurirs}}">{{$value}}</option>
@@ -275,7 +275,7 @@
                                             </div>
                                             <div class="card-body actions">
                                                 <p class="card-text mb-0">Alamat Terdaftar :</p>
-                                                <select class="select2 form-control form-control-lg"  name="kota_tujuan">
+                                                <select class="select2 form-control form-control-lg"  name="kota_tujuan" required=''>
                                                     <option value="{{$alamat2->kota_dua}}">{{$alamat2->nama_kota}}</option>
                                                 </select>
                                                 </span>                                                            
@@ -283,7 +283,7 @@
                                                 <p class="card-text">Nomor Telepon : {{Auth::user()->detail->no_telp}}</p>
                                                 <div class="form-group mb-2">
                                                     <label>Kurir</label>
-                                                    <select class="select2 form-control form-control-lg" name="kurir">
+                                                    <select class="select2 form-control form-control-lg" name="kurir"  required=''>
                                                         <option value="">--Kurir--</option>
                                                         @foreach ($kurir as $kurirs => $value)    
                                                         <option value="{{$kurirs}}">{{$value}}</option>
@@ -308,7 +308,7 @@
                                             </div>
                                             <div class="card-body actions">
                                                 <p class="card-text mb-0">Alamat Terdaftar :</p>
-                                                <select class="select2 form-control form-control-lg" disabled name="kota_tujuan">
+                                                <select class="select2 form-control form-control-lg" name="kota_tujuan"  required=''>
                                                     <option value="{{$alamat3->kota_tiga}}">{{$alamat3->nama_kota}}</option>
                                                 </select>
                                                 </span>                                                            
@@ -316,7 +316,7 @@
                                                 <p class="card-text">Nomor Telepon : {{Auth::user()->detail->no_telp}}</p>
                                                 <div class="form-group mb-2">
                                                     <label>Kurir</label>
-                                                    <select class="select2 form-control form-control-lg" name="kurir">
+                                                    <select class="select2 form-control form-control-lg" name="kurir" required=''>
                                                         <option value="">--Kurir--</option>
                                                         @foreach ($kurir as $kurirs => $value)    
                                                         <option value="{{$kurirs}}">{{$value}}</option>

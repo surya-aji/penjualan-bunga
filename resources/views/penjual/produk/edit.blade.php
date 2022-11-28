@@ -23,6 +23,13 @@
                                 @method('patch')
                                 <div class="row">
                                     <div class="col-12">
+                                        <label for="customFile">Gambar</label>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="customFile" name="gambar_produk_edit" required accept=".jpg, .png" required/>
+                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                            </div>
+                                    </div>
+                                    <div class="col-12">
                                         <div class="form-group">
                                             <label class="form-label" for="basic-icon-default-fullname">Nama</label>
                                             <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" name="nama_produk_edit" value="{{$produk->nama_produk}}" />
@@ -61,10 +68,17 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="exampleFormControlTextarea1">Supplier</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="supplier_edit"  placeholder="Masukan Data Supplier">{{$produk->supplier}}</textarea>
-                                        </div>
+                                        <label>Supplier</label>
+                                        <select class="select2 form-control form-control-lg" name="supplier_edit">
+                                            @foreach ($supp as $item)
+                                            <option value="{{$item->id}}">{{$item->nama}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="exampleFormControlTextarea1">Deskripsi</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="deskripsi_edit" placeholder="Masukan Deskripsi Produk" required></textarea>
                                     </div>
                                    
                                     <div class="col-12">

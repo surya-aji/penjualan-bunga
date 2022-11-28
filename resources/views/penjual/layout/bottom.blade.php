@@ -4,8 +4,6 @@
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="{{asset('app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
-    <script src="{{asset('app-assets/vendors/js/extensions/toastr.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js')}}"></script>
@@ -18,6 +16,8 @@
     <script src="{{asset('app-assets/vendors/js/tables/datatable/buttons.html5.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/tables/datatable/buttons.print.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js')}}"></script>
+    <script src="{{asset('app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
+    <script src="{{asset('app-assets/vendors/js/extensions/toastr.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/pickers/pickadate/picker.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/pickers/pickadate/picker.date.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/pickers/pickadate/picker.time.js')}}"></script>
@@ -34,10 +34,20 @@
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="{{asset('app-assets/js/scripts/pages/dashboard-ecommerce.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/tables/table-datatables-basic.js')}}"></script>
+    <script src="{{asset('app-assets/js/scripts/pages/dashboard-ecommerce.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/forms/form-tooltip-valid.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/components/components-modals.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/forms/form-select2.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/forms/pickers/form-pickers.js')}}"></script>
     <!-- END: Page JS-->
+    <script>
+        $(window).on('load', function() {
+            if (feather) {
+                feather.replace({
+                    width: 14,
+                    height: 14
+                });
+            }
+        })
+    </script>

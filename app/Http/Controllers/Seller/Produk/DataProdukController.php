@@ -85,11 +85,13 @@ class DataProdukController extends Controller
     {
         $produk = DataProduk::findorfail($id);
         $kategori = KategoriBunga::all();
+        $supp = DataSuplier::all();
 
         // $satuanKerja = Satuankerja::all();
 
         return view('penjual.produk.edit',[
             'produk'=> $produk,
+            'supp'=> $supp,
             'kategori' => $kategori
         ]);
     }
@@ -107,10 +109,29 @@ class DataProdukController extends Controller
         $update->nama_produk = $request->nama_produk_edit;
         $update->harga_awal = $request->harga_beli_edit;
         $update->harga_jual = $request->harga_jual_edit;
-        $update->supplier = $request->supplier_edit;
+        $update->supplier_id = $request->supplier_edit;
         $update->stok = $request->stok_edit;
+        $update->deskripsi = $request->deskripsi_edit;
         $update->berat = $request->berat_edit * 1000;
         $update->kategori_id = $request->kategori_edit;
+
+        $file = public_path('/gambar-produk/').$update->gambar;
+
+        if ($request->hasFile('gambar_produk_edit')) {
+            if (file_exists($file)){
+                //maka delete file diforder public/img
+                @unlink($file);
+            }
+            //delete data didatabase
+            // $delete->delete();
+            $nm = $request->gambar_produk_edit;
+            $namaFile = time() . rand(100, 999) . "." . $nm->getClientOriginalExtension();
+            $update->gambar = $namaFile;
+            $nm->move(public_path() . '/gambar-produk', $namaFile);
+        }else{
+            $produk->gambar = 'default.png';
+        }
+        
 
         $update->update();
         return redirect('/seller/produk');

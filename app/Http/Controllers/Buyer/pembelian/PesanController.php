@@ -148,6 +148,8 @@ class PesanController extends Controller
             'courier'       => $request->kurir    // kode kurir pengiriman: ['jne', 'tiki', 'pos'] untuk starter
         ])->get();
         
+
+        // dd($cost);
         
         $biaya = $cost[0]['costs'][0]['cost'][0]; // ambil data biaya ongkir
         $kurir = $cost[0]['name']; //ambil data nama kurir

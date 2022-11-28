@@ -31,11 +31,11 @@ class IndexController extends Controller
         $cari = $request->cari;
  
     		// mengambil data dari table produk sesuai pencarian data
-        $produk = DB::table('kategori_bungas')
+        $kategori = DB::table('kategori_bungas')
 		->where('jenis_kategori','like',"%".$cari."%")
 		->paginate();
  
     		// mengirim data produk ke view index
-            return view('pembeli.kategori.index',compact('kategori'));
+            return view('pembeli.layout.dashboard',compact('kategori'));
     }
 }
